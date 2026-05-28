@@ -1,13 +1,10 @@
 package br.com.restaurante.sistema_estoque_restaurante.model;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Ingrediente {
 	
-	private Long id;
 	private BigDecimal quantidadeProduto;
-	
 	private Produto produto;
 	private Receita receita;
 	
@@ -15,20 +12,11 @@ public class Ingrediente {
 		this.quantidadeProduto = BigDecimal.ZERO;
 	}
 	
-	public Ingrediente(Long id, BigDecimal quantidade, Produto produto, Receita receita) {
+	public Ingrediente(BigDecimal quantidade, Produto produto, Receita receita) {
 		this();
-		this.id = id;
 		this.quantidadeProduto = quantidade;
 		this.produto = produto;
 		this.receita = receita;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public BigDecimal getQuantidadeProduto() {
@@ -54,7 +42,7 @@ public class Ingrediente {
 	public void setReceita(Receita receita) {
 		this.receita = receita;
 	}
-	
+	/*
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,6 +59,6 @@ public class Ingrediente {
     @Override
     public String toString() {
         return quantidadeProduto + " de " + (produto != null ? produto.getNome() : "Produto Indefinido");
-    }
+    } */
 
 }

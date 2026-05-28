@@ -1,7 +1,9 @@
 package br.com.restaurante.sistema_estoque_restaurante;
 
+import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.IngredienteDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.ProdutoDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.UserDao;
+import br.com.restaurante.sistema_estoque_restaurante.model.Ingrediente;
 import br.com.restaurante.sistema_estoque_restaurante.model.Produto;
 import br.com.restaurante.sistema_estoque_restaurante.model.User;
 
@@ -48,6 +50,20 @@ public class App /*extends Application*/ {
 			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 		} else {
 			System.out.println("Produto não encontrado.");
+		}
+
+		IngredienteDao ingredienteDao = new IngredienteDao();
+		Ingrediente ingrediente = new Ingrediente();
+
+		if(ingredienteDao.retornar(1, ingrediente)){
+			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+			System.out.println("ID: " + ingrediente.getId());
+			System.out.println("Quantidade Produto: " + ingrediente.getQuantidadeProduto());
+			System.out.println("Produto: " + ingrediente.getProduto().getNome());
+			System.out.println("Receita: " + ingrediente.getReceita().getNome());
+			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+		} else {
+			System.out.println("Ingrediente não encontrado.");
 		}
 	}
 
