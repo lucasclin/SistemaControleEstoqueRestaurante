@@ -1,0 +1,73 @@
+@startuml
+class User {
+  -id : Long
+  -nome : String
+  -senha : String
+}
+class Relatorio <<service>>
+User --> Relatorio
+class MovimentacaoEstoqueDeProduto {
+  -id : Long
+  -dataHora : LocalDateTime
+  -quantidade : BigDecimal
+  -precoUnitario : BigDecimal
+  -validadeLote : LocalDate
+  -observacao : String
+}
+enum TipoMovimentacao {
+  -ENTRADA : int
+  -SAIDA : int
+  -AJUSTE : int
+  -PERDA : int
+}
+class Produto {
+  -id : Long
+  -nome : String
+  -precoAtual : BigDecimal
+  -quantidadeEstoque : BigDecimal
+  -estoqueMinimo : BigDecimal
+  -permiteFracionamento : boolean
+  -ativo : boolean
+}
+Produto "1" -- "- unidade 1" Unidade
+MovimentacaoEstoqueDeProduto "1" -- "- tipoMovimentacao 1" TipoMovimentacao
+User "1" --> "- movimentacaoEstoqueDeProduto 0..*" MovimentacaoEstoqueDeProduto
+User "1" --> "- produto 0..*" Produto
+MovimentacaoEstoqueDeProduto "0..*" --> "- produto 1" Produto
+class Receita {
+  -id : Long
+  -preco : BigDecimal
+  -nome : String
+}
+Receita "1" --> "1..*" Ingrediente
+enum Cardapio {
+  -SEGUNDA : int
+  -TERCA : int
+  -QUARTA : int
+  -QUINTA : int
+  -SEXTA : int
+  -SABADO : int
+  -DOMINGO : int
+  -FESTIVO : int
+  -FIXO : int
+  -TMP : int
+}
+class Unidade {
+  -id : Long
+  -nome : String
+  -descricao : String
+}
+Cardapio "- cardapio 1" -- "1" Receita
+enum TipoCadastro {
+  -admin : int
+  -chef : int
+  -almoxarifado : int
+}
+TipoCadastro "- tipoCadastro 1" -- "1" User
+class Ingrediente {
+  -quantidadeProduto : BigDecimal
+}
+Ingrediente "1" --> "1" Produto
+
+note right: precoVendaAtual = soma precoUnitario;\nativo = para manter historico\n\n\n
+@enduml

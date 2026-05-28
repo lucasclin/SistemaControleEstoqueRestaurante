@@ -1,0 +1,52 @@
+@startuml
+class ManterProdutoController 
+class LoginView <<Interface>>
+LoginView ..> FazerLoginController
+class UnidadeController 
+ManterProdutoController ..> UnidadeController
+class ProdutoDAO 
+class UnidadeDAO 
+class MovimentacaoEstoqueController 
+class MovimentacaoEstoqueDAO 
+class IngredienteDAO 
+class ReceitaDAO 
+class UserDAO 
+class GerarRelatorioController 
+class ManterReceitaController 
+ManterProdutoController ..> ProdutoDAO
+UnidadeController ..> UnidadeDAO
+ManterReceitaController ..> ReceitaDAO
+class FazerLoginController 
+class ManterEstoqueController 
+MovimentacaoEstoqueController ..> MovimentacaoEstoqueDAO
+FazerLoginController ..> UserDAO
+class ManterGeralView <<Interface>>
+class ManterCadastroView <<Interface>>
+class GerarRelatorioView <<Interface>>
+class MovimentacaoEstoqueView <<Interface>>
+LoginView --> ManterGeralView
+LoginView --> ManterCadastroView
+MovimentacaoEstoqueView --> GerarRelatorioView
+class ManterCadastroController 
+ManterCadastroController ..> UserDAO
+ManterCadastroView ..> ManterCadastroController
+GerarRelatorioView ..> GerarRelatorioController
+ManterGeralView ..> ManterReceitaController
+ManterGeralView ..> ManterProdutoController
+ManterGeralView ..> ManterEstoqueController
+MovimentacaoEstoqueView --> MovimentacaoEstoqueController
+MovimentacaoEstoqueView <--> ManterGeralView
+LoginView <--> MovimentacaoEstoqueView
+ManterGeralView <--> ManterCadastroView
+ManterCadastroView <--> MovimentacaoEstoqueView
+MovimentacaoEstoqueController ..> ManterEstoqueController
+ManterEstoqueController -- ManterProdutoController
+ManterEstoqueController ..> ProdutoDAO
+class IngredienteController 
+ManterReceitaController ..> IngredienteController
+IngredienteController ..> ManterProdutoController
+IngredienteController ..> IngredienteDAO
+MovimentacaoEstoqueController ..> ManterCadastroController
+
+note right: Talvez juntar os dois:\nEstoque => quantidades (int, numeric)\nProduto => O resto (nome, unidade)
+@enduml

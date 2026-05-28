@@ -1,0 +1,17 @@
+@startuml
+:User: 
+("Fazer Login") 
+("Manter Produto") 
+("Gerar Relatório") 
+("Movimentar estoque de produto") 
+:User: --> ("Fazer Login")
+:User: --> ("Gerar Relatório")
+:User: --> ("Movimentar estoque de produto")
+:User: --> ("Manter Produto")
+("Manter Receita") 
+:User: --> ("Manter Receita")
+("Manter estoque") 
+:User: --> ("Manter estoque")
+("Manter Cadastro") 
+:User: --> ("Manter Cadastro")
+@enduml
