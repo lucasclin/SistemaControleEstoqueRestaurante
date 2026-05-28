@@ -1,14 +1,10 @@
 package br.com.restaurante.sistema_estoque_restaurante;
 
-import javafx.application.*;
-import javafx.fxml.*;
-import javafx.scene.Scene;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import java.io.IOException;
+import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.UserDao;
+import br.com.restaurante.sistema_estoque_restaurante.model.User;
 
-public class App extends Application {
-	
+public class App /*extends Application*/ {
+	/*
 	@Override
 	public void start(Stage stage) throws IOException {
 		//tenta carregar a view vazia
@@ -17,10 +13,21 @@ public class App extends Application {
 		stage.setTitle("Sistema de Estoque - Restaurante");
         stage.setScene(scene);
         stage.show();
-	}
+	} */
 	
 	public static void main(String[] args) {
-		launch();
+		/*launch();*/
+		User user = new User();
+		UserDao userDao = new UserDao();
+
+		if(userDao.retornar(0, user)){
+			System.out.println("ID: " + user.getId());
+			System.out.println("Nome: " + user.getNome());
+			System.out.println("Senha: " + user.getSenha());
+			System.out.println("Tipo Cadastro: " + user.getTipoCadastro());
+		} else {
+			System.out.println("Usuário não encontrado.");
+		};
 	}
 
 }
