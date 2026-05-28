@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import br.com.restaurante.sistema_estoque_restaurante.model.Ingrediente;
 import br.com.restaurante.sistema_estoque_restaurante.model.Produto;
+import br.com.restaurante.sistema_estoque_restaurante.model.Receita;
 
 public class IngredienteDao {
 
@@ -16,7 +17,11 @@ public class IngredienteDao {
     Produto produto = new Produto();
     produtoDao.retornar(saida.getInt("id_p"), produto);
 
-    resultado.setId(Long.valueOf(saida.getInt("id_r")));
+    ReceitaDao receitaDao = new ReceitaDao();
+    Receita receita = new Receita();
+    receitaDao.retornar(saida.getInt("id_r"), receita);
+
+    resultado.setReceita(receita);
     resultado.setProduto(produto);
     resultado.setQuantidadeProduto(saida.getBigDecimal("quantidade"));
   }

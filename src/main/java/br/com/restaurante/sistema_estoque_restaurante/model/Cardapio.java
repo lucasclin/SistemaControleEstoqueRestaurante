@@ -12,7 +12,7 @@ public enum Cardapio {
 	FIXO,
 	ESPECIAL,
 	TMP;
-	public static Cardapio tipoCadastroInt(int tipo) {
+	public static Cardapio tipoCardapioInt(int tipo) {
 		return switch (tipo) {
 			case 1 -> DOMINGO;
 			case 2 -> SEGUNDA;
