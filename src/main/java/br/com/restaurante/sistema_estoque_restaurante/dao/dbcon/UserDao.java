@@ -7,7 +7,7 @@
  * PRIMARY KEY(id)
  * );
  */
-package br.com.restaurante.sistema_estoque_restaurante.model.dao;
+package br.com.restaurante.sistema_estoque_restaurante.dao.dbcon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
