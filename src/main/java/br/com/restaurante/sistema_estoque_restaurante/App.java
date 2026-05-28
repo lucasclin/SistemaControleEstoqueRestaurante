@@ -30,7 +30,7 @@ public class App /*extends Application*/ {
 	} */
 	
 	public static void main(String[] args) {
-		/*
+		
 		User user = new User();
 		UserDao userDao = new UserDao();
 
@@ -106,7 +106,7 @@ public class App /*extends Application*/ {
 			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 		} else {
 			System.out.println("Movimentação não encontrada.");
-		}*/
+		}
 
 		/*
 		ProdutoDao produtoDao = new ProdutoDao();
