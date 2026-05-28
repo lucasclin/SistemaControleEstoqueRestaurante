@@ -65,4 +65,33 @@ public class IngredienteDao {
       AcessoSQLite.desconectar(con);
     }
   }
+
+  public boolean inserir(Ingrediente ingrediente) {
+    String sql = "INSERT INTO ingrediente (id_p, id_r, quantidade) VALUES (?, ?, ?)";
+    Connection con = null;
+    PreparedStatement cmd;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, Math.toIntExact(ingrediente.getProduto().getId()));
+      cmd.setInt(2, Math.toIntExact(ingrediente.getReceita().getId()));
+      cmd.setBigDecimal(3, ingrediente.getQuantidadeProduto());
+
+      int linhasAfetadas = cmd.executeUpdate();
+      con.commit();
+
+      return linhasAfetadas > 0;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
 }

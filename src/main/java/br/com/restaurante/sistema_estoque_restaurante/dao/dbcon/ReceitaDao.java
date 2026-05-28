@@ -65,4 +65,33 @@ public class ReceitaDao {
       AcessoSQLite.desconectar(con);
     }
   }
+
+  public boolean inserir(Receita receita) {
+    String sql = "INSERT INTO receita (preco, nome, cardapio) VALUES (?, ?, ?);";
+    Connection con = null;
+    PreparedStatement cmd;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setBigDecimal(1, receita.getPreco());
+      cmd.setString(2, receita.getNome());
+      cmd.setInt(3, receita.getCardapio().ordinal());
+
+      cmd.executeUpdate();
+      con.commit();
+      
+      return true;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
 }

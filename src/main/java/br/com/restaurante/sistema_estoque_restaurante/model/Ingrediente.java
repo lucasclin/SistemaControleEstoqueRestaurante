@@ -13,7 +13,6 @@ public class Ingrediente {
 	}
 	
 	public Ingrediente(BigDecimal quantidade, Produto produto, Receita receita) {
-		this();
 		this.quantidadeProduto = quantidade;
 		this.produto = produto;
 		this.receita = receita;

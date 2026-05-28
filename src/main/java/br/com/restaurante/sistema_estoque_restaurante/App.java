@@ -1,14 +1,20 @@
 package br.com.restaurante.sistema_estoque_restaurante;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.IngredienteDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.MovimentacaoDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.ProdutoDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.ReceitaDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.UserDao;
+import br.com.restaurante.sistema_estoque_restaurante.model.Cardapio;
 import br.com.restaurante.sistema_estoque_restaurante.model.Ingrediente;
 import br.com.restaurante.sistema_estoque_restaurante.model.MovimentacaoEstoqueDeProduto;
 import br.com.restaurante.sistema_estoque_restaurante.model.Produto;
 import br.com.restaurante.sistema_estoque_restaurante.model.Receita;
+import br.com.restaurante.sistema_estoque_restaurante.model.TipoCadastro;
+import br.com.restaurante.sistema_estoque_restaurante.model.TipoMovimentacao;
 import br.com.restaurante.sistema_estoque_restaurante.model.User;
 
 public class App /*extends Application*/ {
@@ -24,11 +30,11 @@ public class App /*extends Application*/ {
 	} */
 	
 	public static void main(String[] args) {
-		/*launch();*/
+		/*
 		User user = new User();
 		UserDao userDao = new UserDao();
 
-		if(userDao.retornar(1, user)){
+		if(userDao.retornar(2, user)){
 			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 			System.out.println("ID: " + user.getId());
 			System.out.println("Nome: " + user.getNome());
@@ -100,6 +106,27 @@ public class App /*extends Application*/ {
 			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 		} else {
 			System.out.println("Movimentação não encontrada.");
-		}
+		}*/
+
+		/*
+		ProdutoDao produtoDao = new ProdutoDao();
+		Produto produto = new Produto(Long.valueOf(4), "Coca-Cola", new java.math.BigDecimal("5.00"), new java.math.BigDecimal("100.00"), new java.math.BigDecimal("10.00"), true, false);
+		produtoDao.inserir(produto);
+
+		ReceitaDao receitaDao = new ReceitaDao();
+		Receita receita = new Receita(Long.valueOf(4), "Coca-Cola Gelada", new java.math.BigDecimal("7.00"), Cardapio.FIXO);
+		receitaDao.inserir(receita);
+
+		IngredienteDao ingredienteDao = new IngredienteDao();
+		Ingrediente ingrediente = new Ingrediente(new java.math.BigDecimal("2.00"), produto, receita);
+		ingredienteDao.inserir(ingrediente);
+
+		UserDao userDao = new UserDao();
+		User user = new User();
+		userDao.retornar(2, user);
+
+		MovimentacaoDao movimentacaoDao = new MovimentacaoDao();
+		MovimentacaoEstoqueDeProduto movimentacao = new MovimentacaoEstoqueDeProduto(Long.valueOf(2), LocalDateTime.now(), new java.math.BigDecimal("2.0"), new java.math.BigDecimal("5.0"), LocalDate.now().plusMonths(1), "Entrada teste", TipoMovimentacao.ENTRADA, produto, user);
+		movimentacaoDao.inserir(movimentacao); */
 	}
 }

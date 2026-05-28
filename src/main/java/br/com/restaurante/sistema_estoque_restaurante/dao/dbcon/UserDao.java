@@ -64,4 +64,33 @@ public class UserDao {
       AcessoSQLite.desconectar(con);
     }
   }
+
+  public boolean inserir(User user) {
+    String sql = "INSERT INTO user (nome, senha, tipoCadastro) VALUES (?, ?, ?);";
+    Connection con = null;
+    PreparedStatement cmd;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setString(1, user.getNome());
+      cmd.setString(2, user.getSenha());
+      cmd.setInt(3, user.getTipoCadastro().ordinal());
+
+      cmd.executeUpdate();
+      con.commit();
+      
+      return true;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
 }

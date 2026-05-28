@@ -71,4 +71,36 @@ public class ProdutoDao {
       AcessoSQLite.desconectar(con);
     }
   }
+
+  public boolean inserir(Produto produto) {
+    String sql = "INSERT INTO produto (nome, precoAtual, quantidadeEstoque, estoqueMinimo, permiteFracionamento, ativo) VALUES (?, ?, ?, ?, ?, ?);";
+    Connection con = null;
+    PreparedStatement cmd;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setString(1, produto.getNome());
+      cmd.setBigDecimal(2, produto.getPrecoAtual());
+      cmd.setBigDecimal(3, produto.getQuantidadeEstoque());
+      cmd.setBigDecimal(4, produto.getEstoqueMinimo());
+      cmd.setInt(5, produto.isPermiteFracionamento() ? 1 : 0);
+      cmd.setInt(6, produto.isAtivo() ? 1 : 0);
+
+      cmd.executeUpdate();
+      con.commit();
+      
+      return true;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
 }

@@ -85,4 +85,38 @@ public class MovimentacaoDao {
       AcessoSQLite.desconectar(con);
     }
   }
+
+  public boolean inserir(MovimentacaoEstoqueDeProduto movimentacao) {
+    String sql = "INSERT INTO movimentacao (id_p, id_u, tipoMovimentacao, dataMovimentacao, quantidade, precoUnitario, dataValidade, observacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    Connection con = null;
+    PreparedStatement cmd;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, movimentacao.getProduto().getId().intValue());
+      cmd.setInt(2, movimentacao.getUser().getId().intValue());
+      cmd.setInt(3, movimentacao.getTipoMovimentacao().ordinal());
+      cmd.setString(4, movimentacao.getDataHora().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+      cmd.setBigDecimal(5, movimentacao.getQuantidade());
+      cmd.setBigDecimal(6, movimentacao.getPrecoUnitario());
+      cmd.setString(7, movimentacao.getValidadeLote().toString());
+      cmd.setString(8, movimentacao.getObservacao());
+
+      cmd.executeUpdate();
+      con.commit();
+      
+      return true;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
 }

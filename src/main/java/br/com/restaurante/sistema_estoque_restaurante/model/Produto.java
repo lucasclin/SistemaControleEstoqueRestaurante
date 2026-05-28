@@ -29,6 +29,18 @@ public class Produto {
 		this.unidade = unidade;
 	}
 
+	public Produto(Long id, String nome, BigDecimal precoAtual, BigDecimal quantidadeEstoque, BigDecimal estoqueMinimo,
+			boolean permiteFracionamento, boolean isAtivo) {
+		this.id = id;
+		this.nome = nome;
+		this.precoAtual = precoAtual;
+		this.quantidadeEstoque = quantidadeEstoque;
+		this.estoqueMinimo = estoqueMinimo;
+		this.permiteFracionamento = permiteFracionamento;
+		this.isAtivo = isAtivo;
+
+	}
+
 	public Long getId() {
 		return id;
 	}

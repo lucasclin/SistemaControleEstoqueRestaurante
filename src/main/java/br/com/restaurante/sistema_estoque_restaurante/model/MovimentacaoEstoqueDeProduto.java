@@ -33,6 +33,20 @@ public class MovimentacaoEstoqueDeProduto {
 		this.user = user;
 	}
 
+	public MovimentacaoEstoqueDeProduto(Long id, LocalDateTime dataHora, BigDecimal quantidade,
+			BigDecimal precoUnitario, LocalDate validadeLote, String observacao, TipoMovimentacao tipoMovimentacao,
+			Produto produto, User user) {
+		this.id = id;
+		this.dataHora = dataHora;
+		this.quantidade = quantidade;
+		this.precoUnitario = precoUnitario;
+		this.validadeLote = validadeLote;
+		this.observacao = observacao;
+		this.tipoMovimentacao = tipoMovimentacao;
+		this.produto = produto;
+		this.user = user;
+	}
+
 	public Long getId() {
 		return id;
 	}
