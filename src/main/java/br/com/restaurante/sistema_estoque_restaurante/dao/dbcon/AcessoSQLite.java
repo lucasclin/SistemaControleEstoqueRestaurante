@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class AcessoSQLite {
-  private static final String DATABASE = "/home/live/Desktop/SistemaControleEstoqueRestaurante/SistemaControleEstoqueRestaurante/Database/estoque";
+  private static final String DATABASE = "SistemaControleEstoqueRestaurante/Database/estoque";
   private static final String URL = "jdbc:sqlite:"+ DATABASE +".db";
   
   public static Connection conectar() {

@@ -1,10 +1,12 @@
 package br.com.restaurante.sistema_estoque_restaurante;
 
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.IngredienteDao;
+import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.MovimentacaoDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.ProdutoDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.ReceitaDao;
 import br.com.restaurante.sistema_estoque_restaurante.dao.dbcon.UserDao;
 import br.com.restaurante.sistema_estoque_restaurante.model.Ingrediente;
+import br.com.restaurante.sistema_estoque_restaurante.model.MovimentacaoEstoqueDeProduto;
 import br.com.restaurante.sistema_estoque_restaurante.model.Produto;
 import br.com.restaurante.sistema_estoque_restaurante.model.Receita;
 import br.com.restaurante.sistema_estoque_restaurante.model.User;
@@ -81,5 +83,23 @@ public class App /*extends Application*/ {
 			System.out.println("Receita não encontrada.");
 		}
 
+		MovimentacaoDao movimentacaoDao = new MovimentacaoDao();
+		MovimentacaoEstoqueDeProduto movimentacao = new MovimentacaoEstoqueDeProduto();
+		
+		if (movimentacaoDao.retornar(1, movimentacao)){
+			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+			System.out.println("ID: " + movimentacao.getId());
+			System.out.println("Produto: " + movimentacao.getProduto().getNome());
+			System.out.println("Usuário: " + movimentacao.getUser().getNome());
+			System.out.println("Tipo Movimentação: " + movimentacao.getTipoMovimentacao());
+			System.out.println("Data/Hora: " + movimentacao.getDataHora());
+			System.out.println("Quantidade: " + movimentacao.getQuantidade());
+			System.out.println("Preço Unitário: " + movimentacao.getPrecoUnitario());
+			System.out.println("Validade Lote: " + movimentacao.getValidadeLote());
+			System.out.println("Observação: " + movimentacao.getObservacao());
+			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+		} else {
+			System.out.println("Movimentação não encontrada.");
+		}
 	}
 }
