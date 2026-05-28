@@ -34,7 +34,7 @@ public class UserDao {
    *  FALTA MUDAR
    */
   public boolean retornar(int id, User resultado) {
-    String sql = "SELECT * FROM user";
+    String sql = "SELECT * FROM user WHERE id = ?";
     Connection con = null;
     PreparedStatement cmd;
     ResultSet saida;
@@ -46,6 +46,7 @@ public class UserDao {
       con.setAutoCommit(false);
 
       cmd = con.prepareStatement(sql);
+      cmd.setInt(1, id);
       saida = cmd.executeQuery();
 
       /* 1 - Existe conta com tal email? */
