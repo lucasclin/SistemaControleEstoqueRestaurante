@@ -1,13 +1,10 @@
 package sdedr.model;
 
-import sdedr.model.User;
-import sdedr.model.Produto;
 import sdedr.model.Enum.TipoMovimentacao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class MovimentacaoEstoqueDeProduto {
 	private Long id;

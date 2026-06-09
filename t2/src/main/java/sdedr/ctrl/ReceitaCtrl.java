@@ -1,10 +1,8 @@
 package sdedr.ctrl;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import sdedr.model.Receita;
-import sdedr.model.Enum.Cardapio;
 import sdedr.dao.ReceitaDao;
 
 public class ReceitaCtrl {

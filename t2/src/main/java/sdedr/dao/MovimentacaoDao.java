@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import sdedr.dao.ProdutoDao;
-import sdedr.dao.UserDao;
 import sdedr.dao.dbcon.AcessoSQLite;
 
 import sdedr.model.Produto;

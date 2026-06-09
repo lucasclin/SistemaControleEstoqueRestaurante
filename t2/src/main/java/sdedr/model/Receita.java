@@ -1,12 +1,10 @@
 package sdedr.model;
 
-import sdedr.model.Ingrediente;
 import sdedr.model.Enum.Cardapio;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Receita {
 	

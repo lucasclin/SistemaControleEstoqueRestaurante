@@ -1,8 +1,6 @@
 package sdedr.dao;
 
 import sdedr.dao.dbcon.AcessoSQLite;
-import sdedr.dao.ProdutoDao;
-import sdedr.dao.ReceitaDao;
 import sdedr.model.Ingrediente;
 import sdedr.model.Produto;
 import sdedr.model.Receita;
@@ -32,8 +30,7 @@ public class IngredienteDao {
 
     ReceitaDao receitaDao = new ReceitaDao();
     Receita receita = new Receita();
-    /* Uhm deu ruim aqui... Não sei para que serve então comment*/
-    //receitaDao.retornar(saida.getInt("id_r"), receita);
+    receitaDao.retornar(saida.getInt("id_r"), receita);
 
     resultado.setReceita(receita);
     resultado.setProduto(produto);

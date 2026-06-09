@@ -2,7 +2,6 @@ package sdedr.model;
 
 import sdedr.model.Enum.TipoCadastro;
 
-import java.util.Objects;
 
 public class User {
 	

@@ -1,12 +1,8 @@
 package sdedr.ctrl;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import sdedr.model.Produto;
 import sdedr.model.Receita;
-import sdedr.model.Unidade;
-import sdedr.dao.ProdutoDao;
 import sdedr.dao.ReceitaDao;
 
 public class ProdutoCtrl {

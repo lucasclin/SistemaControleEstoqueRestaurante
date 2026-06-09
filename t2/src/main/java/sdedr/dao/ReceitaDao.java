@@ -10,7 +10,6 @@
 package sdedr.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,6 +55,37 @@ public class ReceitaDao {
       return resultado.isEmpty() ? false : true;
     } catch (SQLException deuRuim) {
       System.out.println("ERRO [retornarTudo]: " + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
+  public boolean retornar(int id, Receita resultado) {
+    String sql = "SELECT * FROM receita WHERE id = ?";
+    Connection con = null;
+    PreparedStatement cmd;
+    ResultSet saida;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, id);
+      saida = cmd.executeQuery();
+
+      if (saida.next()) {
+        formatarReceita(saida, resultado);
+        return true;
+      }
+
+      return false;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO [retornar]: " + deuRuim.getMessage());
       return false;
     } finally {
       AcessoSQLite.desconectar(con);

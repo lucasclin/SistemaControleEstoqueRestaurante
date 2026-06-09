@@ -1,5 +1,6 @@
 package sdedr.dao;
 
+import sdedr.ctrl.PasswordEncrypt;
 import sdedr.dao.dbcon.AcessoSQLite;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
@@ -9,8 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import sdedr.model.Enum.TipoCadastro;
-import sdedr.dao.dbcon.AcessoSQLite;
 
 /* CREATE TABLE user(
  * id INTEGER,
@@ -81,7 +80,8 @@ public class UserDao {
       saida = cmd.executeQuery();
 
       if (saida.next()) {
-        if (senha.equals(saida.getString("senha"))) {
+        PasswordEncrypt passwordEncrypt = new PasswordEncrypt();
+        if (passwordEncrypt.checkPassword(senha, saida.getString("senha"))) {
           formatarUser(resultado, saida);
           return true;
         }
@@ -139,7 +139,10 @@ public class UserDao {
 
       cmd = con.prepareStatement(sql);
       cmd.setString(1, user.getNome());
-      cmd.setString(2, user.getSenha());
+
+      String senhaCriptografada = new PasswordEncrypt().encryptPassword(user.getSenha());
+
+      cmd.setString(2, senhaCriptografada);
       cmd.setInt(3, user.getTipoCadastro().ordinal());
 
       cmd.executeUpdate();

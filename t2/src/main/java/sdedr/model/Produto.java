@@ -1,9 +1,6 @@
 package sdedr.model;
 
-import sdedr.model.Unidade;
-
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class Produto {
 	private Long id;

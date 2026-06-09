@@ -9,10 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 /* 1 - Ideia...
  *  Cria a classe como extensão de um painel

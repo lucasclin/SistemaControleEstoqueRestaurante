@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 import sdedr.view.LoginView;
 
 public class App extends Application {
+  public static void main(String[] args) {
+    /* Lançar a aplicação JavaFX */
+    launch(args);
+  }
 
   /* Palco das cenas */
   private Stage principalStage;
