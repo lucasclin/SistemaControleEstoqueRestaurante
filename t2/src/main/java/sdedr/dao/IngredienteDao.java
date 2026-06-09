@@ -32,7 +32,8 @@ public class IngredienteDao {
 
     ReceitaDao receitaDao = new ReceitaDao();
     Receita receita = new Receita();
-    receitaDao.retornar(saida.getInt("id_r"), receita);
+    /* Uhm deu ruim aqui... Não sei para que serve então comment*/
+    //receitaDao.retornar(saida.getInt("id_r"), receita);
 
     resultado.setReceita(receita);
     resultado.setProduto(produto);

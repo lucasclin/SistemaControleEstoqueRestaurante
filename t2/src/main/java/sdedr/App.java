@@ -18,23 +18,26 @@ import sdedr.view.LoginView;
 
 public class App extends Application {
 
-  public static void main(String[] args) {
-      launch(args);
-  }
+  /* Palco das cenas */
+  private Stage principalStage;
 
   @Override
-  public void start(Stage primaryStage) {
+  public void start(Stage stage) {
     /* Vamos construir e manipular LoginView em seu .java
      * Mas instaciamos ele aqui no App, como uma tela. */ 
-    LoginView loginView = new LoginView(this);
-    Scene loginTela = new Scene(loginView, 300, 250);
-
+    this.principalStage = stage;
+    this.principalStage.setTitle("SDEDR - Sistema de estoque de restaurante");
     /* Aqui teremos um "ArrayList", ou melhor uma árvore chamada:
      * primaryStage que conterá:
      *  loginTela - manterGeralView - etc.
      * E dependendo da ação utilizará um .set e .show para manipular as telas... */
-    primaryStage.setTitle("SDEDR - Sistema de estoque de restaurante");
-    primaryStage.setScene(loginTela);
-    primaryStage.show();
+    vezDeLoginView();
+  }
+
+  public void vezDeLoginView() {
+    LoginView loginView = new LoginView(this);
+    Scene loginTela = new Scene(loginView, 300, 250);
+    principalStage.setScene(loginTela);
+    principalStage.show();
   }
 }
