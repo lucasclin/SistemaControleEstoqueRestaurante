@@ -34,7 +34,7 @@ public class App extends Application {
 
   public void vezDeLoginView() {
     LoginView loginView = new LoginView(this);
-    Scene loginTela = new Scene(loginView, 300, 250);
+    Scene loginTela = new Scene(loginView, 500, 450);
     principalStage.setScene(loginTela);
     principalStage.show();
   }
