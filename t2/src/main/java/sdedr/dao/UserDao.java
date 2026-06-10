@@ -2,6 +2,7 @@ package sdedr.dao;
 
 import sdedr.ctrl.PasswordEncrypt;
 import sdedr.dao.dbcon.AcessoSQLite;
+import sdedr.model.Receita;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
 
@@ -9,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /* CREATE TABLE user(
@@ -95,6 +97,62 @@ public class UserDao {
     }
   }
 
+  public boolean remover(int id){
+    String sql = "DELETE FROM user "
+               + "WHERE id = ?";
+    Connection con = null;
+    PreparedStatement cmd = null;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+
+      con.setAutoCommit(false);
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, id);
+      return false;
+
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
+
+  public boolean retornarTudo(ArrayList<User> resultado) {
+    String sql = "SELECT * FROM user";
+    Connection con = null;
+    PreparedStatement cmd;
+    ResultSet saida;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+
+      cmd = con.prepareStatement(sql);
+      saida = cmd.executeQuery();
+
+      while (saida.next()) {
+        User novoAux = new User();
+		    formatarUser(novoAux, saida);
+        resultado.add(novoAux);
+      }
+
+      return resultado.isEmpty() ? false : true;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO [retornarTudo]: " + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
   public boolean retornar(int id, User resultado) {
     String sql = "SELECT * FROM user WHERE id = ?";
     Connection con = null;
@@ -124,6 +182,8 @@ public class UserDao {
       AcessoSQLite.desconectar(con);
     }
   }
+
+  
 
   public boolean retornar(String nome, User resultado) {
     String sql = "SELECT * FROM user WHERE nome = ?";

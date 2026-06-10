@@ -36,8 +36,8 @@ public class MenuView{
         pane.setPrefSize(903, 452);
         pane.setStyle("-fx-background-color: #eeeeee;");
 
-        Button MovimentarEstoqueButton = new Button("Adicionar ou Remover Estoque");
-        MovimentarEstoqueButton.setLayoutX(56.00);
+        Button MovimentarEstoqueButton = new Button("Movimentar Estoque");
+        MovimentarEstoqueButton.setLayoutX(55.00);
         MovimentarEstoqueButton.setLayoutY(53.00);
         MovimentarEstoqueButton.setPrefWidth(164.00);
         MovimentarEstoqueButton.setPrefHeight(47.00);
@@ -50,7 +50,7 @@ public class MenuView{
 
         Button ReceitasButton = new Button("Mostrar Receitas");
         ReceitasButton.setLayoutX(55.00);
-        ReceitasButton.setLayoutY(111.00);
+        ReceitasButton.setLayoutY(110.00);
         ReceitasButton.setPrefWidth(164.00);
         ReceitasButton.setPrefHeight(47.00);
         ReceitasButton.setDisable(false);
@@ -61,8 +61,8 @@ public class MenuView{
         pane.getChildren().add(ReceitasButton);
 
         Button InventarioButton = new Button("Gerar Inventário");
-        InventarioButton.setLayoutX(54.44);
-        InventarioButton.setLayoutY(166.05);
+        InventarioButton.setLayoutX(55.00);
+        InventarioButton.setLayoutY(167.00);
         InventarioButton.setPrefWidth(164.00);
         InventarioButton.setPrefHeight(47.00);
         InventarioButton.setDisable(false);
@@ -73,8 +73,8 @@ public class MenuView{
         pane.getChildren().add(InventarioButton);
 
         Button RelatorioButton = new Button("Gerar Relatório");
-        RelatorioButton.setLayoutX(53.00);
-        RelatorioButton.setLayoutY(219.00);
+        RelatorioButton.setLayoutX(55.00);
+        RelatorioButton.setLayoutY(224.00);
         RelatorioButton.setPrefWidth(164.00);
         RelatorioButton.setPrefHeight(47.00);
         RelatorioButton.setDisable(false);
@@ -85,8 +85,8 @@ public class MenuView{
         pane.getChildren().add(RelatorioButton);
 
         Button CardapiosButton = new Button("Mostrar Cardápios");
-        CardapiosButton.setLayoutX(54.44);
-        CardapiosButton.setLayoutY(274.05);
+        CardapiosButton.setLayoutX(55.00);
+        CardapiosButton.setLayoutY(281.00);
         CardapiosButton.setPrefWidth(164.00);
         CardapiosButton.setPrefHeight(47.00);
         CardapiosButton.setDisable(false);
@@ -95,6 +95,18 @@ public class MenuView{
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(CardapiosButton);
+
+        Button CadastrosButton = new Button("Cadastros");
+        CadastrosButton.setLayoutX(55.00);
+        CadastrosButton.setLayoutY(338.00);
+        CadastrosButton.setPrefWidth(164.00);
+        CadastrosButton.setPrefHeight(47.00);
+        CadastrosButton.setDisable(false);
+        CadastrosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        CadastrosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        CadastrosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
+        CadastrosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
+        pane.getChildren().add(CadastrosButton);
 
         TextArea AreaTexto = new TextArea("");
         AreaTexto.setEditable(false);
@@ -216,6 +228,11 @@ public class MenuView{
             else {
                 AreaTexto.setText("Acesso negado. Você não tem permissão para acessar as receitas.");
             }
+        });
+
+        CadastrosButton.setOnAction(event -> {
+            CadastrosView cadastrosView = new CadastrosView(user.getTipoCadastro());
+            cadastrosView.start(new Stage());
         });
         
     }

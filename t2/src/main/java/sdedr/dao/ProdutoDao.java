@@ -87,6 +87,31 @@ public class ProdutoDao {
     }
   }
 
+    public boolean remover(int id){
+    String sql = "DELETE FROM produto "
+               + "WHERE id = ?";
+    Connection con = null;
+    PreparedStatement cmd = null;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+
+      con.setAutoCommit(false);
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, id);
+      return false;
+
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
   public boolean retornar(int id, Produto resultado) {
     String sql = "SELECT * FROM produto WHERE id = ?";
     Connection con = null;
