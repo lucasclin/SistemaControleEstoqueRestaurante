@@ -2,7 +2,7 @@ package sdedr.view;
 
 import sdedr.App;
 import sdedr.ctrl.UserCtrl;
-
+import sdedr.model.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -85,8 +85,10 @@ public class LoginView extends GridPane {
             respostaDeLogarText.setText("Ok.");
 
             Stage stageMenu = new Stage();
+            User user = new User();
+            userCtrl.retornarUsuario(usuario, user);
 
-            MenuView menu = new MenuView(usuario);
+            MenuView menu = new MenuView(usuario, user);
           
             menu.start(stageMenu);
 

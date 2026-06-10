@@ -31,6 +31,17 @@ public class ProdutoDao {
     resultado.setQuantidadeEstoque(saida.getBigDecimal("quantidadeEstoque"));
     resultado.setEstoqueMinimo(saida.getBigDecimal("estoqueMinimo"));
 
+    UnidadeDao unidadeDao = new UnidadeDao();
+    Unidade unidade = new Unidade();
+    if (unidadeDao.retornar(saida.getInt("id"), unidade)) {
+      resultado.setUnidade(unidade);
+    } else {
+      resultado.setUnidade(null);
+    }
+
+
+    resultado.setUnidade(null);
+
     if(saida.getInt("permiteFracionamento") == 1) {
       resultado.setPermiteFracionamento(true);
     } else {

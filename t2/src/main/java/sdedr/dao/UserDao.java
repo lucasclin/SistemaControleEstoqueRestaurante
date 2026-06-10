@@ -125,6 +125,36 @@ public class UserDao {
     }
   }
 
+  public boolean retornar(String nome, User resultado) {
+    String sql = "SELECT * FROM user WHERE nome = ?";
+    Connection con = null;
+    PreparedStatement cmd;
+    ResultSet saida;
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setString(1, nome);
+      saida = cmd.executeQuery();
+
+      if (saida.next()) {
+        formatarUser(resultado, saida);
+        return true;
+      }
+      
+      return false;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
   public boolean inserir(User user) {
     String sql = "INSERT INTO user (nome, senha, tipoCadastro) VALUES (?, ?, ?);";
     Connection con = null;

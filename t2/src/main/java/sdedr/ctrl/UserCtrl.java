@@ -28,4 +28,9 @@ public class UserCtrl {
     UserDao userDao = new UserDao();
     return userDao.logar(nome, senha, usuarioAtual);
   }
+
+  public boolean retornarUsuario(String nome, User resultado) {
+    UserDao userDao = new UserDao();
+    return userDao.retornar(nome, resultado);
+  }
 }

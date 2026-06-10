@@ -64,6 +64,10 @@ public class Receita {
 		this.ingredientes = ingredientes;
 	}
 
+	public ArrayList<Ingrediente> getIngredientes(Ingrediente ingrediente) {
+		return new ArrayList<>(this.ingredientes);
+	}
+
   /* 28/05
    * Whoa!
    * Que metódo bonito! Não sei quem fez mas céus que coisa legal!

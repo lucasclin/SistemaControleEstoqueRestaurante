@@ -2,7 +2,9 @@ package sdedr.ctrl;
 
 import java.util.ArrayList;
 
+import sdedr.model.Produto;
 import sdedr.model.Receita;
+import sdedr.dao.ProdutoDao;
 import sdedr.dao.ReceitaDao;
 
 public class ProdutoCtrl {
@@ -16,5 +18,15 @@ public class ProdutoCtrl {
 
   public ArrayList<Receita> getReceitas() {
     return this.receitas;
+  }
+
+  public ArrayList<Produto> getInventario() {
+    ArrayList<Produto> inventario = new ArrayList<>();
+    ProdutoDao produtoDao = new ProdutoDao();
+    if (produtoDao.retornarTudo(inventario)) {
+      return inventario;
+    } else {
+      return null;
+    }
   }
 }

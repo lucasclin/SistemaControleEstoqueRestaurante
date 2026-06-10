@@ -1,9 +1,20 @@
 package sdedr.view;
 
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import sdedr.ctrl.IngredienteCtrl;
+import sdedr.ctrl.MovimentacaoCtrl;
+import sdedr.ctrl.ProdutoCtrl;
+import sdedr.ctrl.ReceitaCtrl;
+import sdedr.model.Ingrediente;
+import sdedr.model.MovimentacaoEstoqueDeProduto;
+import sdedr.model.Produto;
+import sdedr.model.User;
+import sdedr.model.Enum.TipoCadastro;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -11,9 +22,11 @@ import javafx.scene.text.Font;
 
 public class MenuView{
     private String nomeUsuario;
+    private User user;
 
-    public MenuView(String nomeUsuario) {
+    public MenuView(String nomeUsuario, User user) {
         this.nomeUsuario = nomeUsuario;
+        this.user = user;
     }
 
     public void start(Stage primaryStage) {
@@ -84,6 +97,7 @@ public class MenuView{
         pane.getChildren().add(CardapiosButton);
 
         TextArea AreaTexto = new TextArea("");
+        AreaTexto.setEditable(false);
         AreaTexto.setLayoutX(257.00);
         AreaTexto.setLayoutY(55.00);
         AreaTexto.setPrefWidth(605.00);
@@ -104,8 +118,100 @@ public class MenuView{
 
         Scene scene = new Scene(pane, 903, 452);
         primaryStage.setScene(scene);
+
+        primaryStage.setResizable(true);
+
+        primaryStage.widthProperty().addListener((obs, velho, novo) -> {
+            AreaTexto.setPrefWidth(novo.doubleValue() - 298);
+        });
+
+        primaryStage.heightProperty().addListener((obs, velho, novo) -> {
+            AreaTexto.setPrefHeight(novo.doubleValue() - 120);
+        });
+
+        // Garante que ela já comece com o tamanho correto se a janela abrir maior
+        AreaTexto.setPrefWidth(primaryStage.getWidth() - 298);
+        AreaTexto.setPrefHeight(primaryStage.getHeight() - 120);
+
         primaryStage.show();
 
+        InventarioButton.setOnAction(event -> {
+            if (user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.ALMOXARIFADO || user.getTipoCadastro() == TipoCadastro.CHEF) {
+                AreaTexto.setText("--- INVENTÁRIO DO ESTOQUE ---\n\n");
+                ProdutoCtrl produtoCtrl = new ProdutoCtrl();
+                ArrayList<Produto> listaProdutos = produtoCtrl.getInventario();
+
+                for (Produto p : listaProdutos) {
+                    String linha;
+                    if (p.isPermiteFracionamento()) {
+                        linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " (Fracionável)" + "\n";
+                    } else {
+                    linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + "\n";
+                    }
+                    AreaTexto.appendText(linha);
+                }
+            }
+            else {
+                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar o inventário.");
+            }
+        });
+
+        RelatorioButton.setOnAction(event -> {
+            if (user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.ALMOXARIFADO) {
+                AreaTexto.setText("--- RELATÓRIO DE MOVIMENTAÇÕES ---\n\n");
+
+                MovimentacaoCtrl movimentacaoCtrl = new MovimentacaoCtrl();
+                ArrayList<MovimentacaoEstoqueDeProduto> listaMovimentacoes = movimentacaoCtrl.getRelatorio();
+
+                for (MovimentacaoEstoqueDeProduto m : listaMovimentacoes) {
+                    String linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";
+                    AreaTexto.appendText(linha);
+                }
+            }
+            else {
+                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar o relatório.");
+            }
+        });
+        
+
+        CardapiosButton.setOnAction(event -> {
+
+        });
+
+        ReceitasButton.setOnAction(event -> {
+            if(user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.CHEF) {
+                AreaTexto.setText("--- RECEITAS CADASTRADAS ---\n\n");
+                ReceitaCtrl receitaCtrl = new ReceitaCtrl();
+                receitaCtrl.prepararReceitas();
+                ArrayList<sdedr.model.Receita> listaReceitas = receitaCtrl.getReceitas();
+
+                for (sdedr.model.Receita r : listaReceitas) {
+                    String linha = "Codigo: " + r.getId() + " | Receita: " + r.getNome() + " | Preço: R$ " + r.getPreco() + "\n";
+                    AreaTexto.appendText(linha);
+
+                    ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+                    IngredienteCtrl ingredienteCtrl = new IngredienteCtrl();
+                    ingredienteCtrl.retornarIngredientesReceita(r, ingredientes);
+
+                    if (ingredientes.isEmpty()) {
+                        AreaTexto.appendText("  (Sem ingredientes cadastrados)\n");
+                    } else {
+                        
+
+                        AreaTexto.appendText("  Ingredientes:\n");
+                    }
+                    for (Ingrediente i : ingredientes) {
+                                    String linhaIngrediente = "    - " + i.getProduto().getNome() + ": " + i.getQuantidadeProduto() + " " + i.getProduto().getUnidade().getNome() + "\n";
+                                    AreaTexto.appendText(linhaIngrediente);
+                    }  
+                }
+            }
+            else {
+                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar as receitas.");
+            }
+        });
+        
     }
 }
+
 

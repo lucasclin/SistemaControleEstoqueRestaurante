@@ -66,6 +66,10 @@ public class MovimentacaoEstoqueDeProduto {
 		this.precoUnitario = precoUnitario;
 	}
 
+	public BigDecimal getPrecoTotal() {
+		return this.precoUnitario.multiply(this.quantidade);
+	}
+
 	public LocalDate getValidadeLote() {
 		return validadeLote;
 	}
@@ -104,5 +108,9 @@ public class MovimentacaoEstoqueDeProduto {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getUserName() {
+		return this.user.getNome();
 	}
 }

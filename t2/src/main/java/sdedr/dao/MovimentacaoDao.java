@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import sdedr.dao.dbcon.AcessoSQLite;
 
@@ -80,6 +81,36 @@ public class MovimentacaoDao {
       }
       
       return false;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
+  public boolean retornarTudo(ArrayList<MovimentacaoEstoqueDeProduto> resultado) {
+    String sql = "SELECT * FROM movimentacao";
+    Connection con = null;
+    PreparedStatement cmd;
+    ResultSet saida;
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      saida = cmd.executeQuery();
+
+      while (saida.next()) {
+        MovimentacaoEstoqueDeProduto novaMovimentacao = new MovimentacaoEstoqueDeProduto();
+        formatarMovimentacao(novaMovimentacao, saida);
+        resultado.add(novaMovimentacao);
+      }
+      
+      return resultado.isEmpty() ? false : true;
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());
       return false;
