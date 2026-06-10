@@ -1,5 +1,4 @@
 package sdedr.dao;
-/* FAZER FUNCIONAR SISTEMA QUE MOSTRA A UNIDADE NO RELATORIO, ESTÁ NO RETORNAR!!!!!!!!! */
 
 import java.util.ArrayList;
 
@@ -108,7 +107,6 @@ public class ProdutoDao {
       if (saida.next()) {
         formatarProduto(resultado, saida);
         
-        return true;
       }
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());
