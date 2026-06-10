@@ -1,4 +1,5 @@
 package sdedr.dao;
+/* FAZER FUNCIONAR SISTEMA QUE MOSTRA A UNIDADE NO RELATORIO, ESTÁ NO RETORNAR!!!!!!!!! */
 
 import java.util.ArrayList;
 
@@ -109,8 +110,34 @@ public class ProdutoDao {
         
         return true;
       }
-      
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
       return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+
+    sql = "SELECT * FROM tipoUnidade WHERE id_p = ?";
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, Math.toIntExact(resultado.getId()));
+      saida = cmd.executeQuery();
+
+      if (saida.next()) {
+        UnidadeDao unidadeDao = new UnidadeDao();
+        Unidade unidade = new Unidade();
+
+        resultado.setUnidade(unidade);
+        unidadeDao.retornar(saida.getInt("id_u"), resultado.getUnidade());
+      }
+      
+      return true;
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());
       return false;

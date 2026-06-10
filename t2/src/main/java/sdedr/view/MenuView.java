@@ -149,6 +149,7 @@ public class MenuView{
                     } else {
                         linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " (Fracionável)" + "\n";
                     }
+
                 } else {
                     linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + "\n";
                 }
@@ -164,7 +165,13 @@ public class MenuView{
                 ArrayList<MovimentacaoEstoqueDeProduto> listaMovimentacoes = movimentacaoCtrl.getRelatorio();
 
                 for (MovimentacaoEstoqueDeProduto m : listaMovimentacoes) {
-                    String linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";
+                    String linha;
+                    if (m.getProduto().getUnidade() != null) {
+                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | Qtd: " + m.getQuantidade() + " " + m.getProduto().getUnidade().getNome() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";  
+                    }
+                    else{
+                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";
+                    }
                     AreaTexto.appendText(linha);
                 }
             }
