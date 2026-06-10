@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /* 1 - Ideia...
  *  Cria a classe como extensão de um painel
@@ -82,6 +83,15 @@ public class LoginView extends GridPane {
         } else {
           if(userCtrl.confirmarLogin(usuario, senha)) {
             respostaDeLogarText.setText("Ok.");
+
+            Stage stageMenu = new Stage();
+
+            MenuView menu = new MenuView(usuario);
+          
+            menu.start(stageMenu);
+
+            Stage janelaLogin = (Stage) logarButton.getScene().getWindow();
+            janelaLogin.close();
           } else {
             respostaDeLogarText.setText("Valores errados.");
           }
