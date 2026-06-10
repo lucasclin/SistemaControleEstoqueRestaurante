@@ -1,10 +1,11 @@
 package sdedr.dao;
 
+import java.util.ArrayList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import sdedr.model.Produto;
 import sdedr.model.Unidade;
@@ -30,17 +31,6 @@ public class ProdutoDao {
     resultado.setPrecoAtual(saida.getBigDecimal("precoAtual"));
     resultado.setQuantidadeEstoque(saida.getBigDecimal("quantidadeEstoque"));
     resultado.setEstoqueMinimo(saida.getBigDecimal("estoqueMinimo"));
-
-    UnidadeDao unidadeDao = new UnidadeDao();
-    Unidade unidade = new Unidade();
-    if (unidadeDao.retornar(saida.getInt("id"), unidade)) {
-      resultado.setUnidade(unidade);
-    } else {
-      resultado.setUnidade(null);
-    }
-
-
-    resultado.setUnidade(null);
 
     if(saida.getInt("permiteFracionamento") == 1) {
       resultado.setPermiteFracionamento(true);
@@ -78,11 +68,11 @@ public class ProdutoDao {
         formatarProduto(novoAux, saida);
 
         if(saida.getString("u_nome") != null) {
-          Unidade unidadeTmp = new Unidade();
-          unidadeTmp.setId(Long.valueOf(saida.getInt("u_id")));
-          unidadeTmp.setNome(saida.getString("u_nome"));
-          unidadeTmp.setDescricao(saida.getString("u_descricao"));
-          novoAux.setUnidade(unidadeTmp);
+          UnidadeDao unidadeDao = new UnidadeDao();
+          Unidade unidade = new Unidade();
+
+          unidadeDao.retornar(saida.getInt("u_id"), unidade);
+          novoAux.setUnidade(unidade);
         }
 
         resultado.add(novoAux);

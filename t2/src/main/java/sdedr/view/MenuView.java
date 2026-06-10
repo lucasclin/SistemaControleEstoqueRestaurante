@@ -136,23 +136,23 @@ public class MenuView{
         primaryStage.show();
 
         InventarioButton.setOnAction(event -> {
-            if (user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.ALMOXARIFADO || user.getTipoCadastro() == TipoCadastro.CHEF) {
-                AreaTexto.setText("--- INVENTÁRIO DO ESTOQUE ---\n\n");
-                ProdutoCtrl produtoCtrl = new ProdutoCtrl();
-                ArrayList<Produto> listaProdutos = produtoCtrl.getInventario();
+            AreaTexto.setText("--- INVENTÁRIO DO ESTOQUE ---\n\n");
+            ProdutoCtrl produtoCtrl = new ProdutoCtrl();
+            ArrayList<Produto> listaProdutos = produtoCtrl.getInventario();
 
-                for (Produto p : listaProdutos) {
-                    String linha;
-                    if (p.isPermiteFracionamento()) {
-                        linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " (Fracionável)" + "\n";
+            for (Produto p : listaProdutos) {
+                String linha;
+
+                if (p.isPermiteFracionamento()) {
+                    if (p.getUnidade() != null) {
+                        linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " " + p.getUnidade().getNome() + " (Fracionável)" + "\n";
                     } else {
-                    linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + "\n";
+                        linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " (Fracionável)" + "\n";
                     }
-                    AreaTexto.appendText(linha);
+                } else {
+                    linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + "\n";
                 }
-            }
-            else {
-                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar o inventário.");
+                AreaTexto.appendText(linha);
             }
         });
 
