@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 public class CadastrosView extends Application {
 
     private TipoCadastro tipoCadastro;
+    final boolean[] aguardandoConfirmacao = {false};
     
     public CadastrosView(TipoCadastro tipoCadastro) {
         this.tipoCadastro = tipoCadastro;
@@ -191,10 +192,16 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(false);
             produtosTable.setVisible(false);
             receitasTable.setVisible(false);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+
+
 
             UserDao userdao = new UserDao();
             ArrayList<User> lista = new ArrayList<>();
             userdao.retornarTudo(lista);
+            
 
             ObservableList<User> userList = FXCollections.observableArrayList(lista);
 
@@ -206,6 +213,10 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(true);
             produtosTable.setVisible(false);
             receitasTable.setVisible(false);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+
 
             UnidadeDao unidadeDao = new UnidadeDao();
             ArrayList<Unidade> lista = new ArrayList<>();
@@ -221,6 +232,10 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(false);
             produtosTable.setVisible(true);
             receitasTable.setVisible(false);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+
 
             ProdutoDao produtoDao = new ProdutoDao();
             ArrayList<Produto> lista = new ArrayList<>();
@@ -236,6 +251,9 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(false);
             produtosTable.setVisible(false);
             receitasTable.setVisible(true);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
 
             ReceitaDao userdao = new ReceitaDao();
             ArrayList<Receita> lista = new ArrayList<>();
@@ -244,6 +262,48 @@ public class CadastrosView extends Application {
             ObservableList<Receita> receitasList = FXCollections.observableArrayList(lista);
 
             receitasTable.setItems(receitasList);
+        });
+
+
+        RemoverButton.setOnAction(event -> {
+            Object itemSelecionado = null;
+            TableView<?> tabelaAtiva = null;
+
+            if (userTable.isVisible()) {
+                itemSelecionado = userTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = userTable;
+            } else if (unidadesTable.isVisible()) {
+                itemSelecionado = unidadesTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = unidadesTable;
+            } else if (produtosTable.isVisible()) {
+                itemSelecionado = produtosTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = produtosTable;
+            } else if (receitasTable.isVisible()) {
+                itemSelecionado = receitasTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = receitasTable;
+            }
+
+            if (itemSelecionado == null) {
+                aguardandoConfirmacao[0] = false;
+                RemoverButton.setText("Remover");
+                RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                return;
+            }
+
+            if (!aguardandoConfirmacao[0]) {
+                aguardandoConfirmacao[0] = true;
+                RemoverButton.setText("Confirmar?");
+                RemoverButton.setStyle("-fx-background-color: #ffe6e6; -fx-text-fill: #cc0000; -fx-border-color: #cc0000; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            
+            } else {
+                tabelaAtiva.getItems().remove(itemSelecionado);
+
+                tabelaAtiva.refresh();
+
+                aguardandoConfirmacao[0] = false;
+                RemoverButton.setText("Remover");
+                RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            }
         });
     }
 }
