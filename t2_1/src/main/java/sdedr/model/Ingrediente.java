@@ -2,17 +2,13 @@ package sdedr.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.*;
-
 public class Ingrediente {
 	
 	private BigDecimal quantidadeProduto;
 	private Produto produto;
 	private Receita receita;
 	
-	public Ingrediente() {
-		this.quantidadeProduto = BigDecimal.ZERO;
-	}
+	public Ingrediente() { }
 	
 	public Ingrediente(BigDecimal quantidade, Produto produto, Receita receita) {
 		this.quantidadeProduto = quantidade;
@@ -43,23 +39,4 @@ public class Ingrediente {
 	public void setReceita(Receita receita) {
 		this.receita = receita;
 	}
-	/*
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ingrediente that = (Ingrediente) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return quantidadeProduto + " de " + (produto != null ? produto.getNome() : "Produto Indefinido");
-    } */
-
 }

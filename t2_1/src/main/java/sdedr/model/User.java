@@ -1,6 +1,7 @@
-package br.com.restaurante.sistema_estoque_restaurante.model;
+package sdedr.model;
 
-import java.util.Objects;
+import sdedr.model.Enum.TipoCadastro;
+
 
 public class User {
 	
@@ -10,9 +11,7 @@ public class User {
 	
 	private TipoCadastro tipoCadastro;
 	
-	public User() {
-		
-	}
+	public User() { }
 	
 	public User(Long id, String nome, String senha, TipoCadastro tipo) {
 		this.id = id;
@@ -52,25 +51,4 @@ public class User {
 	public void setTipoCadastro(TipoCadastro tipoCadastro) {
 		this.tipoCadastro = tipoCadastro;
 	}
-	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    // Ocultamos a senha do toString() por questões de segurança de log
-    @Override
-    public String toString() {
-        return nome + " (" + tipoCadastro + ")";
-    }
-    
-
 }

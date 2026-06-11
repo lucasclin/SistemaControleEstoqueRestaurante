@@ -1,13 +1,9 @@
 package sdedr.model;
 
-import java.util.Objects;
 
-import javax.persistence.*;
 
-@Entity
 public class Unidade {
-
-  @Id
+	
 	private Long id;
 	private String nome;
 	private String descricao;

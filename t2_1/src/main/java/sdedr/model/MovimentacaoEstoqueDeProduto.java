@@ -1,48 +1,24 @@
 package sdedr.model;
 
+import sdedr.model.Enum.TipoMovimentacao;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
-import javax.persistence.*;
-
-import sdedr.model.Produto;
-import sdedr.model.User;
-import sdedr.model.Enum.TipoMovimentacao;
-
-@Entity
 public class MovimentacaoEstoqueDeProduto {
-
-  @Id
 	private Long id;
 	private LocalDateTime dataHora;
 	private BigDecimal quantidade;
 	private BigDecimal precoUnitario;
 	private LocalDate validadeLote;
 	private String observacao;
-
-  @Enumerated(EnumType.ORDINAL)
+	
 	private TipoMovimentacao tipoMovimentacao;
-
-  @ManyToOne
-  @JoinColumn(name = "id_p")
-	private Produto produto;  
-
-  @ManyToOne
-  @JoinColumn(name = "id_u")
+	private Produto produto;
 	private User user;
 	
 	public MovimentacaoEstoqueDeProduto() { }
-	
-	public MovimentacaoEstoqueDeProduto(Long id, BigDecimal quantidade, TipoMovimentacao tipo, Produto produto, User user) {
-		this();
-		this.id = id;
-		this.quantidade = quantidade;
-		this.tipoMovimentacao = tipo;
-		this.produto = produto;
-		this.user = user;
-	}
 
 	public MovimentacaoEstoqueDeProduto(Long id, LocalDateTime dataHora, BigDecimal quantidade,
 			BigDecimal precoUnitario, LocalDate validadeLote, String observacao, TipoMovimentacao tipoMovimentacao,

@@ -1,30 +1,23 @@
 package sdedr.model;
 
+import sdedr.model.Enum.Cardapio;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import javax.persistence.*;
-
-@Entity
 public class Receita {
-
-  @Id
+	
 	private Long id;
 	private String nome;
 	private BigDecimal preco;
-
-  @Enumerated(EnumType.ORDINAL)
 	private Cardapio cardapio;
-
-  @OneToMany(mappedBy="receita")
-	private List<Ingrediente> ingredientes;
+	
+	private List<Ingrediente> ingredientes = new ArrayList<>();
 	
 	public Receita() { }
 	
 	public Receita(Long id, String nome, BigDecimal preco, Cardapio cardapio) {
-		this();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
@@ -70,8 +63,12 @@ public class Receita {
 	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
-	
-	
+
+  /* 28/05
+   * Whoa!
+   * Que metódo bonito! Não sei quem fez mas céus que coisa legal!
+   * Quantos this bem pensados...
+   */ 
 	public void adicionarIngrediente(Ingrediente ingrediente) {
 		if (ingrediente != null && !this.ingredientes.contains(ingrediente)) {
 			this.ingredientes.add(ingrediente);

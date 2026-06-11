@@ -1,4 +1,4 @@
-package sdedr.model;
+package sdedr.model.Enum;
 
 public enum Cardapio {
 	ERRO,
@@ -12,6 +12,7 @@ public enum Cardapio {
 	FIXO,
 	ESPECIAL,
 	TMP;
+
 	public static Cardapio tipoCardapioInt(int tipo) {
 		return switch (tipo) {
 			case 1 -> DOMINGO;

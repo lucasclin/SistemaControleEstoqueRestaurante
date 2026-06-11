@@ -1,16 +1,16 @@
-package sdedr.model;
+package sdedr.model.Enum;
 
 public enum TipoCadastro {
-	ADMIN,
+	ERRO,
+  ADMIN,
 	CHEF,
-	ALMOXARIFADO,
-	ERRO; 
+	ALMOXARIFADO; 
 	
 	public static TipoCadastro tipoCadastroInt(int tipo) {
 		return switch (tipo) {
-			case 0 -> ADMIN;
-			case 1 -> CHEF;
-			case 2 -> ALMOXARIFADO;
+			case 1 -> ADMIN;
+			case 2 -> CHEF;
+			case 3 -> ALMOXARIFADO;
 			default -> ERRO;
 		};
 	}

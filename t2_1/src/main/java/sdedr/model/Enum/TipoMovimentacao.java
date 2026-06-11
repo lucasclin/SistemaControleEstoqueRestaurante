@@ -1,4 +1,4 @@
-package sdedr.model;
+package sdedr.model.Enum;
 
 public enum TipoMovimentacao {
 	ERRO,
@@ -6,6 +6,7 @@ public enum TipoMovimentacao {
 	SAIDA,
 	AJUSTE,
 	PERDA;
+
 	public static TipoMovimentacao tipoMovimentacaoInt(int tipo) {
 		return switch (tipo) {
 			case 1 -> ENTRADA;
