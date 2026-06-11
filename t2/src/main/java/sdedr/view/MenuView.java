@@ -194,7 +194,8 @@ public class MenuView{
         
 
         CardapiosButton.setOnAction(event -> {
-
+            CardapioView cardapioView = new CardapioView();
+            cardapioView.start(new Stage());
         });
 
         ReceitasButton.setOnAction(event -> {
