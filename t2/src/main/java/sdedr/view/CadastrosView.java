@@ -47,7 +47,7 @@ public class CadastrosView extends Application {
         UsuariosButton.setLayoutY(53.00);
         UsuariosButton.setPrefWidth(164.00);
         UsuariosButton.setPrefHeight(47.00);
-        UsuariosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        UsuariosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         UsuariosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         UsuariosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { UsuariosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         UsuariosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { UsuariosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -58,7 +58,7 @@ public class CadastrosView extends Application {
         ProdutosButton.setLayoutY(112.00);
         ProdutosButton.setPrefWidth(164.00);
         ProdutosButton.setPrefHeight(47.00);
-        ProdutosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        ProdutosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         ProdutosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         ProdutosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ProdutosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ProdutosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ProdutosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -69,7 +69,7 @@ public class CadastrosView extends Application {
         UnidadesButton.setLayoutY(167.00);
         UnidadesButton.setPrefWidth(164.00);
         UnidadesButton.setPrefHeight(47.00);
-        UnidadesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        UnidadesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         UnidadesButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         UnidadesButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { UnidadesButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         UnidadesButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { UnidadesButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -80,7 +80,7 @@ public class CadastrosView extends Application {
         ReceitasButton.setLayoutY(223.00);
         ReceitasButton.setPrefWidth(164.00);
         ReceitasButton.setPrefHeight(47.00);
-        ReceitasButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        ReceitasButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         ReceitasButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -91,7 +91,7 @@ public class CadastrosView extends Application {
         IngredientesButton.setLayoutY(279.00);
         IngredientesButton.setPrefWidth(164.00);
         IngredientesButton.setPrefHeight(47.00);
-        IngredientesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        IngredientesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         IngredientesButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         IngredientesButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { IngredientesButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         IngredientesButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { IngredientesButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -164,7 +164,7 @@ public class CadastrosView extends Application {
         Button CadastrarButton = new Button("Cadastrar");
         CadastrarButton.setPrefWidth(105.81);
         CadastrarButton.setPrefHeight(30.00);
-        CadastrarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        CadastrarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         CadastrarButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         CadastrarButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrarButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CadastrarButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrarButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -172,7 +172,7 @@ public class CadastrosView extends Application {
         Button RemoverButton = new Button("Remover");
         RemoverButton.setPrefWidth(105.81);
         RemoverButton.setPrefHeight(30.00);
-        RemoverButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        RemoverButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         RemoverButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { RemoverButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         RemoverButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { RemoverButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });

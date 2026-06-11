@@ -42,7 +42,7 @@ public class MenuView{
         MovimentarEstoqueButton.setPrefWidth(164.00);
         MovimentarEstoqueButton.setPrefHeight(47.00);
         MovimentarEstoqueButton.setDisable(false);
-        MovimentarEstoqueButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        MovimentarEstoqueButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         MovimentarEstoqueButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         MovimentarEstoqueButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { MovimentarEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         MovimentarEstoqueButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { MovimentarEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -54,7 +54,7 @@ public class MenuView{
         ReceitasButton.setPrefWidth(164.00);
         ReceitasButton.setPrefHeight(47.00);
         ReceitasButton.setDisable(false);
-        ReceitasButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        ReceitasButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         ReceitasButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -66,7 +66,7 @@ public class MenuView{
         InventarioButton.setPrefWidth(164.00);
         InventarioButton.setPrefHeight(47.00);
         InventarioButton.setDisable(false);
-        InventarioButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        InventarioButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         InventarioButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         InventarioButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { InventarioButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         InventarioButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { InventarioButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -78,7 +78,7 @@ public class MenuView{
         RelatorioButton.setPrefWidth(164.00);
         RelatorioButton.setPrefHeight(47.00);
         RelatorioButton.setDisable(false);
-        RelatorioButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        RelatorioButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         RelatorioButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         RelatorioButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { RelatorioButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         RelatorioButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { RelatorioButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -90,7 +90,7 @@ public class MenuView{
         CardapiosButton.setPrefWidth(164.00);
         CardapiosButton.setPrefHeight(47.00);
         CardapiosButton.setDisable(false);
-        CardapiosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        CardapiosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         CardapiosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -102,7 +102,7 @@ public class MenuView{
         CadastrosButton.setPrefWidth(164.00);
         CadastrosButton.setPrefHeight(47.00);
         CadastrosButton.setDisable(false);
-        CadastrosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        CadastrosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         CadastrosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         CadastrosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CadastrosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -115,7 +115,7 @@ public class MenuView{
         AreaTexto.setPrefWidth(605.00);
         AreaTexto.setPrefHeight(363.00);
         AreaTexto.setPromptText("");
-        AreaTexto.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        AreaTexto.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         AreaTexto.setStyle("-fx-control-inner-background: #ffffff; -fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
         pane.getChildren().add(AreaTexto);
 
@@ -124,7 +124,7 @@ public class MenuView{
         element7.setLayoutY(15.796875);
         element7.setPrefWidth(105.8125);
         element7.setPrefHeight(18);
-        element7.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        element7.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         element7.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(element7);
 

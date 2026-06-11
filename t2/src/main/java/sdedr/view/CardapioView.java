@@ -45,7 +45,7 @@ public class CardapioView {
         Label labelDia = new Label("Dia:");
         labelDia.setLayoutX(55.00);
         labelDia.setLayoutY(58.00);
-        labelDia.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        labelDia.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         labelDia.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(labelDia);
 
@@ -65,7 +65,7 @@ public class CardapioView {
         areaTexto.setLayoutY(95.00);
         areaTexto.setPrefWidth(793.00);
         areaTexto.setPrefHeight(312.00);
-        areaTexto.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        areaTexto.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         areaTexto.setStyle("-fx-control-inner-background: #ffffff; -fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px;");
         pane.getChildren().add(areaTexto);
 

@@ -34,7 +34,7 @@ public class CadastroProdutoView extends Application {
         CadastrarProdutoTXT.setLayoutY(19.359375);
         CadastrarProdutoTXT.setPrefWidth(150);
         CadastrarProdutoTXT.setPrefHeight(19);
-        CadastrarProdutoTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        CadastrarProdutoTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         CadastrarProdutoTXT.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(CadastrarProdutoTXT);
 
@@ -44,7 +44,7 @@ public class CadastroProdutoView extends Application {
         nomeInput.setPrefWidth(224.00);
         nomeInput.setPrefHeight(24.00);
         nomeInput.setPromptText("Nome do novo produto");
-        nomeInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        nomeInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         nomeInput.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
         pane.getChildren().add(nomeInput);
 
@@ -53,7 +53,7 @@ public class CadastroProdutoView extends Application {
         element6.setLayoutY(55);
         element6.setPrefWidth(235);
         element6.setPrefHeight(17);
-        element6.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        element6.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         element6.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(element6);
 
@@ -63,7 +63,7 @@ public class CadastroProdutoView extends Application {
         ConfirmarButton.setPrefWidth(106.00);
         ConfirmarButton.setPrefHeight(69.00);
         ConfirmarButton.setDisable(false);
-        ConfirmarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        ConfirmarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         ConfirmarButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         ConfirmarButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ConfirmarButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ConfirmarButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ConfirmarButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -75,7 +75,7 @@ public class CadastroProdutoView extends Application {
         precoAtualInput.setPrefWidth(224.00);
         precoAtualInput.setPrefHeight(24.00);
         precoAtualInput.setPromptText("Preço Atual do novo produto");
-        precoAtualInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        precoAtualInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         precoAtualInput.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
         pane.getChildren().add(precoAtualInput);
 
@@ -85,7 +85,7 @@ public class CadastroProdutoView extends Application {
         estoqueMinimoInput.setPrefWidth(224.00);
         estoqueMinimoInput.setPrefHeight(24.00);
         estoqueMinimoInput.setPromptText("Estoque mínimo do produto");
-        estoqueMinimoInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        estoqueMinimoInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         estoqueMinimoInput.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
         pane.getChildren().add(estoqueMinimoInput);
 
@@ -94,7 +94,7 @@ public class CadastroProdutoView extends Application {
         permiteFracTXT.setLayoutY(203.359375);
         permiteFracTXT.setPrefWidth(187);
         permiteFracTXT.setPrefHeight(21);
-        permiteFracTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        permiteFracTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         permiteFracTXT.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(permiteFracTXT);
 
@@ -120,7 +120,7 @@ public class CadastroProdutoView extends Application {
         UnidadeTXT.setLayoutY(272.359375);
         UnidadeTXT.setPrefWidth(105.8125);
         UnidadeTXT.setPrefHeight(18);
-        UnidadeTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        UnidadeTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         UnidadeTXT.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(UnidadeTXT);
 
@@ -129,7 +129,7 @@ public class CadastroProdutoView extends Application {
         confirmadoTXT.setLayoutY(341);
         confirmadoTXT.setPrefWidth(206);
         confirmadoTXT.setPrefHeight(18);
-        confirmadoTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        confirmadoTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
         confirmadoTXT.setStyle("-fx-text-fill: #1b1b1b;");
         confirmadoTXT.setVisible(false);
         pane.getChildren().add(confirmadoTXT);
@@ -146,8 +146,8 @@ public class CadastroProdutoView extends Application {
         
         unidadeCmb.setItems(opcoesUnidade);
         
-        unidadeCmb.setLayoutX(226.00);
-        unidadeCmb.setLayoutY(280.00);
+        unidadeCmb.setLayoutX(80.00);
+        unidadeCmb.setLayoutY(300.00);
         pane.getChildren().add(unidadeCmb); 
 
         Scene scene = new Scene(pane, 899, 450);
