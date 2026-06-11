@@ -5,6 +5,7 @@ module sdedr {
     requires spring.security.crypto;
     requires javafx.graphics;
     requires javafx.base;
+    requires java.base;
 
     // Permite que o JavaFX acesse o subpacote controller que criaremos depois
     /*opens br.com.restaurante.sistema_estoque_restaurante.controller to javafx.fxml;*/

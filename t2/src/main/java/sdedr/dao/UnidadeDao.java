@@ -80,7 +80,7 @@ public class UnidadeDao {
     }
   }
 
-    public boolean remover(int id){
+    public boolean remover(Long id){
     String sql = "DELETE FROM unidade "
                + "WHERE id = ?";
     Connection con = null;
@@ -95,7 +95,7 @@ public class UnidadeDao {
 
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, id);
+      cmd.setLong(1, id);
 
       cmd.executeUpdate();
       con.commit();
@@ -118,7 +118,7 @@ public class UnidadeDao {
 
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, id);
+      cmd.setLong(1, id);
 
       cmd.executeUpdate();
       con.commit();
@@ -135,7 +135,7 @@ public class UnidadeDao {
 
  
    public boolean inserir(Unidade unidade) {
-    String sql = "INSERT INTO unidade (id, nome, descricao) VALUES (?, ?, ?);";
+    String sql = "INSERT INTO unidade (nome, descricao) VALUES (?, ?);";
     Connection con = null;
     PreparedStatement cmd;
 
@@ -147,9 +147,8 @@ public class UnidadeDao {
       con.setAutoCommit(false);
 
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, Math.toIntExact(unidade.getId()));
-      cmd.setString(2, unidade.getNome());
-      cmd.setString(3, unidade.getDescricao());
+      cmd.setString(1, unidade.getNome());
+      cmd.setString(2, unidade.getDescricao());
 
       cmd.executeUpdate();
       con.commit();

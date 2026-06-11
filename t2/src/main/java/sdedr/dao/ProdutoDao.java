@@ -87,7 +87,7 @@ public class ProdutoDao {
     }
   }
 
-    public boolean remover(int id){
+    public boolean remover(Long id){
     String sql = "DELETE FROM produto "
                + "WHERE id = ?";
     Connection con = null;
@@ -101,7 +101,30 @@ public class ProdutoDao {
 
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, id);
+      cmd.setLong(1, id);
+
+      cmd.executeUpdate();
+      con.commit();
+
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+
+    sql = "DELETE FROM tipoUnidade "
+               + "WHERE id_p = ?";
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+
+      con.setAutoCommit(false);
+      cmd = con.prepareStatement(sql);
+      cmd.setLong(1, id);
 
       cmd.executeUpdate();
       con.commit();
@@ -177,6 +200,7 @@ public class ProdutoDao {
     String sql = "INSERT INTO produto (nome, precoAtual, quantidadeEstoque, estoqueMinimo, permiteFracionamento, ativo) VALUES (?, ?, ?, ?, ?, ?);";
     Connection con = null;
     PreparedStatement cmd;
+    Long p_id;
 
     try {
       con = AcessoSQLite.conectar();
@@ -196,6 +220,48 @@ public class ProdutoDao {
       cmd.executeUpdate();
       con.commit();
       
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+    sql = "SELECT id FROM produto WHERE nome = (?);";
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setString(1, produto.getNome());
+      ResultSet saida = cmd.executeQuery();
+      p_id = (Long.valueOf(saida.getInt("id")));
+
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+
+    sql = "INSERT INTO tipoUnidade (id_p, id_u) VALUES (?, ?);";
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+      con.setAutoCommit(false);
+
+      cmd = con.prepareStatement(sql);
+      cmd.setLong(1, p_id);
+      cmd.setLong(2, produto.getUnidade().getId());
+
+      cmd.executeUpdate();
+      con.commit();
+
       return true;
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());

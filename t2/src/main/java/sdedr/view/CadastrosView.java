@@ -20,6 +20,8 @@ import sdedr.model.Receita;
 import sdedr.model.Unidade;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
+import sdedr.view.Cadastros.CadastroProdutoView;
+import sdedr.view.Cadastros.CadastroUnidadeView;
 import sdedr.view.Cadastros.CadastroUserView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -315,14 +317,18 @@ public class CadastrosView extends Application {
                     UserDao userDao = new UserDao();
                     User user = (User) itemSelecionado;
 
-                    System.out.println("Tentando deletar o usuário ID: " + user.getId());
-
                     userDao.remover(user.getId());
                     
                 } else if (unidadesTable.isVisible()) {
+                    UnidadeDao unidadeDao = new UnidadeDao();
+                    Unidade unidade = (Unidade) itemSelecionado;
 
+                    unidadeDao.remover(unidade.getId());
                 } else if (produtosTable.isVisible()) {
+                    ProdutoDao produtoDao = new ProdutoDao();
+                    Produto produto = (Produto) itemSelecionado;
 
+                    produtoDao.remover(produto.getId());
                 } else if (receitasTable.isVisible()) {
 
                 }
@@ -352,9 +358,11 @@ public class CadastrosView extends Application {
                 CadastroUserView cadastroUserView = new CadastroUserView();
                 cadastroUserView.start(new Stage());
             } else if (tabelaAtiva == unidadesTable) {
-
+                CadastroUnidadeView cadastroUnidadeView = new CadastroUnidadeView();
+                cadastroUnidadeView.start(new Stage());
             } else if (tabelaAtiva == produtosTable) {
-
+                CadastroProdutoView cadastroProdutoView = new CadastroProdutoView();
+                cadastroProdutoView.start(new Stage());
             } else if (tabelaAtiva == receitasTable) {
 
             }

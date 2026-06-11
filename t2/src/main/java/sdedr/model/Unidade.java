@@ -10,6 +10,11 @@ public class Unidade {
 	
 	public Unidade(){ }
 
+	@Override
+    public String toString() {
+        return this.getNome();
+    }
+
 	public Long getId() {
 		return id;
 	}

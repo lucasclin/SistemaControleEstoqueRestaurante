@@ -73,6 +73,15 @@ public class Produto {
 		this.permiteFracionamento = permiteFracionamento;
 	}
 
+	public void setPermiteFracionamento(int index){
+		if (index == 1){
+			this.permiteFracionamento = true;
+		}
+		else{
+			this.permiteFracionamento = false;
+		}
+	}
+
 	public boolean isAtivo() {
 		return ativo;
 	}
