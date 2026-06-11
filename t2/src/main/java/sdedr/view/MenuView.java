@@ -232,8 +232,13 @@ public class MenuView{
         });
 
         CadastrosButton.setOnAction(event -> {
-            CadastrosView cadastrosView = new CadastrosView(user.getTipoCadastro());
-            cadastrosView.start(new Stage());
+            if (user.getTipoCadastro() == TipoCadastro.ADMIN){
+                CadastrosView cadastrosView = new CadastrosView(user.getTipoCadastro());
+                cadastrosView.start(new Stage());
+            }
+            else{
+                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar as receitas.");
+            }
         });
         
     }

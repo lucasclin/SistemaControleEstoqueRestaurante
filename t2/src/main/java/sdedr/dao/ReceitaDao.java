@@ -76,7 +76,11 @@ public class ReceitaDao {
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
       cmd.setInt(1, id);
-      return false;
+
+      cmd.executeUpdate();
+      con.commit();
+
+      return true;
 
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());

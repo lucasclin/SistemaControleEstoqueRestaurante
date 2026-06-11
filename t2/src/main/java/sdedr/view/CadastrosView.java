@@ -20,6 +20,7 @@ import sdedr.model.Receita;
 import sdedr.model.Unidade;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
+import sdedr.view.Cadastros.CadastroUserView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 public class CadastrosView extends Application {
 
     private TipoCadastro tipoCadastro;
+    final boolean[] aguardandoConfirmacao = {false};
     
     public CadastrosView(TipoCadastro tipoCadastro) {
         this.tipoCadastro = tipoCadastro;
@@ -84,6 +86,17 @@ public class CadastrosView extends Application {
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         painelEsquerdo.getChildren().add(ReceitasButton);
+
+        Button IngredientesButton = new Button("Cadastrar Ingredientes");
+        IngredientesButton.setLayoutX(40.00);
+        IngredientesButton.setLayoutY(279.00);
+        IngredientesButton.setPrefWidth(164.00);
+        IngredientesButton.setPrefHeight(47.00);
+        IngredientesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
+        IngredientesButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        IngredientesButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { IngredientesButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
+        IngredientesButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { IngredientesButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
+        painelEsquerdo.getChildren().add(IngredientesButton);
 
 
        TableView<Unidade> unidadesTable = new TableView<>();
@@ -191,10 +204,16 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(false);
             produtosTable.setVisible(false);
             receitasTable.setVisible(false);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+
+
 
             UserDao userdao = new UserDao();
             ArrayList<User> lista = new ArrayList<>();
             userdao.retornarTudo(lista);
+            
 
             ObservableList<User> userList = FXCollections.observableArrayList(lista);
 
@@ -206,6 +225,10 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(true);
             produtosTable.setVisible(false);
             receitasTable.setVisible(false);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+
 
             UnidadeDao unidadeDao = new UnidadeDao();
             ArrayList<Unidade> lista = new ArrayList<>();
@@ -221,6 +244,10 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(false);
             produtosTable.setVisible(true);
             receitasTable.setVisible(false);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+
 
             ProdutoDao produtoDao = new ProdutoDao();
             ArrayList<Produto> lista = new ArrayList<>();
@@ -236,6 +263,9 @@ public class CadastrosView extends Application {
             unidadesTable.setVisible(false);
             produtosTable.setVisible(false);
             receitasTable.setVisible(true);
+            aguardandoConfirmacao[0] = false;
+            RemoverButton.setText("Remover");
+            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
 
             ReceitaDao userdao = new ReceitaDao();
             ArrayList<Receita> lista = new ArrayList<>();
@@ -244,6 +274,90 @@ public class CadastrosView extends Application {
             ObservableList<Receita> receitasList = FXCollections.observableArrayList(lista);
 
             receitasTable.setItems(receitasList);
+        });
+
+
+        RemoverButton.setOnAction(event -> {
+            Object itemSelecionado = null;
+            TableView<?> tabelaAtiva = null;
+
+            if (userTable.isVisible()) {
+                itemSelecionado = userTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = userTable;
+            } else if (unidadesTable.isVisible()) {
+                itemSelecionado = unidadesTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = unidadesTable;
+            } else if (produtosTable.isVisible()) {
+                itemSelecionado = produtosTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = produtosTable;
+            } else if (receitasTable.isVisible()) {
+                itemSelecionado = receitasTable.getSelectionModel().getSelectedItem();
+                tabelaAtiva = receitasTable;
+            }
+
+            if (itemSelecionado == null) {
+                aguardandoConfirmacao[0] = false;
+                RemoverButton.setText("Remover");
+                RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                return;
+            }
+
+            if (!aguardandoConfirmacao[0]) {
+                aguardandoConfirmacao[0] = true;
+                RemoverButton.setText("Confirmar?");
+                RemoverButton.setStyle("-fx-background-color: #ffe6e6; -fx-text-fill: #cc0000; -fx-border-color: #cc0000; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            
+            } else {
+
+                tabelaAtiva.getItems().remove(itemSelecionado);
+
+                if (userTable.isVisible()) {
+                    UserDao userDao = new UserDao();
+                    User user = (User) itemSelecionado;
+
+                    System.out.println("Tentando deletar o usuário ID: " + user.getId());
+
+                    userDao.remover(user.getId());
+                    
+                } else if (unidadesTable.isVisible()) {
+
+                } else if (produtosTable.isVisible()) {
+
+                } else if (receitasTable.isVisible()) {
+
+                }
+
+                tabelaAtiva.refresh();
+
+                aguardandoConfirmacao[0] = false;
+                RemoverButton.setText("Remover");
+                RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            }
+        });
+
+        CadastrarButton.setOnAction(event -> {
+            TableView<?> tabelaAtiva = null;
+
+            if (userTable.isVisible()) {
+                tabelaAtiva = userTable;
+            } else if (unidadesTable.isVisible()) {
+                tabelaAtiva = unidadesTable;
+            } else if (produtosTable.isVisible()) {
+                tabelaAtiva = produtosTable;
+            } else if (receitasTable.isVisible()) {
+                tabelaAtiva = receitasTable;
+            }
+
+            if (tabelaAtiva == userTable) {
+                CadastroUserView cadastroUserView = new CadastroUserView();
+                cadastroUserView.start(new Stage());
+            } else if (tabelaAtiva == unidadesTable) {
+
+            } else if (tabelaAtiva == produtosTable) {
+
+            } else if (tabelaAtiva == receitasTable) {
+
+            }
         });
     }
 }
