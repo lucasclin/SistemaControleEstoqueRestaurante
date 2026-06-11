@@ -2,7 +2,6 @@ package sdedr.dao;
 
 import sdedr.ctrl.PasswordEncrypt;
 import sdedr.dao.dbcon.AcessoSQLite;
-import sdedr.model.Receita;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
 

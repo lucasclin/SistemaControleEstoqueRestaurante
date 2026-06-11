@@ -194,8 +194,12 @@ public class MenuView{
         
 
         CardapiosButton.setOnAction(event -> {
-            CardapioView cardapioView = new CardapioView();
-            cardapioView.start(new Stage());
+            if (user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.CHEF){
+                CardapioView cardapioView = new CardapioView();
+                cardapioView.start(new Stage());
+            } else {
+                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar aos cardápios.");
+            }
         });
 
         ReceitasButton.setOnAction(event -> {
@@ -239,11 +243,11 @@ public class MenuView{
 
         CadastrosButton.setOnAction(event -> {
             if (user.getTipoCadastro() == TipoCadastro.ADMIN){
-                CadastrosView cadastrosView = new CadastrosView(user.getTipoCadastro());
+                CadastrosView cadastrosView = new CadastrosView();
                 cadastrosView.start(new Stage());
             }
             else{
-                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar as receitas.");
+                AreaTexto.setText("Acesso negado. Você não tem permissão para acessar o menu de cadastros.");
             }
         });
         

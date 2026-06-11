@@ -71,7 +71,6 @@ public class IngredienteDao {
   }
 
   public boolean inserir(Ingrediente ingrediente) {
-    String sql = "INSERT INTO ingrediente (id_p, id_r, quantidade) VALUES (?, ?, ?)";
     Connection con = null;
     PreparedStatement cmd;
 
@@ -82,33 +81,16 @@ public class IngredienteDao {
       }
       con.setAutoCommit(false);
 
+      String sql = "INSERT INTO ingrediente (id_p, id_r, quantidade) VALUES (?, ?, ?)";
       cmd = con.prepareStatement(sql);
       cmd.setInt(1, Math.toIntExact(ingrediente.getProduto().getId()));
       cmd.setInt(2, Math.toIntExact(ingrediente.getReceita().getId()));
       cmd.setBigDecimal(3, ingrediente.getQuantidadeProduto());
+      cmd.executeUpdate(); 
 
-    } catch (SQLException deuRuim) {
-      System.out.println("ERRO" + deuRuim.getMessage());
-      return false;
-    }
-    
-
-    sql = "INSERT INTO tipoUnidade (id_p, id_u) VALUES (?, ?)";
-    try {
-      con = AcessoSQLite.conectar();
-      if (con == null) {
-        return false;
-      }
-      con.setAutoCommit(false);
-
-      cmd = con.prepareStatement(sql);
-      cmd.setInt(1, Math.toIntExact(ingrediente.getProduto().getId()));
-      cmd.setInt(2, Math.toIntExact(ingrediente.getProduto().getUnidade().getId()));
-
-      int linhasAfetadas = cmd.executeUpdate();
       con.commit();
+      return true;
 
-      return linhasAfetadas > 0;
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());
       return false;

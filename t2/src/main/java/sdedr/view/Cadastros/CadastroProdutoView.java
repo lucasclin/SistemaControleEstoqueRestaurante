@@ -13,14 +13,11 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import sdedr.dao.ProdutoDao;
 import sdedr.dao.UnidadeDao;
-import sdedr.dao.UserDao;
 import sdedr.model.Produto;
 import sdedr.model.Unidade;
-import sdedr.model.User;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
 public class CadastroProdutoView extends Application {

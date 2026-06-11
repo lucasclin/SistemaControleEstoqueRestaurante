@@ -1,7 +1,5 @@
 package sdedr.view.Cadastros;
 
-import javax.security.auth.callback.Callback;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +9,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import sdedr.dao.UserDao;
 import sdedr.model.User;
-import sdedr.model.Enum.TipoCadastro;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;

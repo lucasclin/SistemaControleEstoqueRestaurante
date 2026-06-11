@@ -14,15 +14,12 @@ import javafx.stage.Stage;
 import sdedr.dao.IngredienteDao;
 import sdedr.dao.ProdutoDao;
 import sdedr.dao.ReceitaDao;
-import sdedr.dao.UnidadeDao;
 import sdedr.model.Ingrediente;
 import sdedr.model.Produto;
 import sdedr.model.Receita;
-import sdedr.model.Unidade;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 
 public class CadastroIngredienteView extends Application {
@@ -130,14 +127,15 @@ public class CadastroIngredienteView extends Application {
         confirmadoTXT.setPrefHeight(18);
         confirmadoTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         confirmadoTXT.setStyle("-fx-text-fill: #1b1b1b;");
+        confirmadoTXT.setVisible(false);
         pane.getChildren().add(confirmadoTXT);
+
 
         Scene scene = new Scene(pane, 899, 450);
         primaryStage.setScene(scene);
         primaryStage.show();
 
         ConfirmarButton.setOnAction(event -> {
-
             Receita receitaSelecionada = receitaCmb.getSelectionModel().getSelectedItem();
             Produto produtoSelecionado = produtoCmb.getSelectionModel().getSelectedItem();
 

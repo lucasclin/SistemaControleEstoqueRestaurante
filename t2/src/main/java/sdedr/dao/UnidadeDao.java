@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import sdedr.model.Unidade;
-import sdedr.model.User;
 import sdedr.dao.dbcon.AcessoSQLite;
 
 public class UnidadeDao {

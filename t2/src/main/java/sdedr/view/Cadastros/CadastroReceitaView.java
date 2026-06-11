@@ -1,7 +1,6 @@
 package sdedr.view.Cadastros;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
@@ -12,13 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import sdedr.dao.ReceitaDao;
-import sdedr.dao.UserDao;
 import sdedr.model.Receita;
-import sdedr.model.User;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 public class CadastroReceitaView extends Application {
     @Override

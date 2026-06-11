@@ -97,4 +97,9 @@ public class Produto {
 	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
 	}
+
+	@Override
+    public String toString() {
+        return this.getNome(); 
+    }
 }

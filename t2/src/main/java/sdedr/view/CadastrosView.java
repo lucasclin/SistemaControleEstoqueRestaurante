@@ -16,7 +16,6 @@ import sdedr.dao.ProdutoDao;
 import sdedr.dao.ReceitaDao;
 import sdedr.dao.UnidadeDao;
 import sdedr.dao.UserDao;
-import sdedr.model.Ingrediente;
 import sdedr.model.Produto;
 import sdedr.model.Receita;
 import sdedr.model.Unidade;
@@ -34,12 +33,7 @@ import javafx.stage.Stage;
 
 public class CadastrosView extends Application {
 
-    private TipoCadastro tipoCadastro;
     final boolean[] aguardandoConfirmacao = {false};
-    
-    public CadastrosView(TipoCadastro tipoCadastro) {
-        this.tipoCadastro = tipoCadastro;
-    }
 
     @Override
     public void start(Stage primaryStage) {

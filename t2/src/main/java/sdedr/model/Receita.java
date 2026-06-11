@@ -83,4 +83,9 @@ public class Receita {
 			ingrediente.setReceita(this);
 		}
 	}
+	
+	@Override
+    public String toString() {
+        return this.getNome(); 
+    }
 }
