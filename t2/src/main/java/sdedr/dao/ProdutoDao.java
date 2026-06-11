@@ -278,7 +278,8 @@ public class ProdutoDao {
     ProdutoDao produtoDao = new ProdutoDao();
     produtoDao.retornar((produto.getId()), tmpProduto);
 
-    if (quantidade_a_mudar.compareTo(produto.getQuantidadeEstoque()) <= 0){
+    if ((quantidade_a_mudar.compareTo(produto.getQuantidadeEstoque()) <= 0 && (movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA))
+       || quantidade_a_mudar.compareTo(produto.getQuantidadeEstoque()) >= 0 && (movimentacao == TipoMovimentacao.AJUSTE || movimentacao == TipoMovimentacao.ENTRADA)){
 
       String sql = "UPDATE produto SET quantidadeEstoque = ? "
                 + "WHERE id = ?";
