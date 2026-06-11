@@ -162,9 +162,6 @@ public class CadastroProdutoView extends Application {
             Unidade unidadeSelecionada = unidadeCmb.getSelectionModel().getSelectedItem();
 
             if (unidadeSelecionada != null) {
-                // Agora você tem acesso a tudo!
-                Long idDaUnidade = unidadeSelecionada.getId();
-                String nomeDaUnidade = unidadeSelecionada.getNome();
                 
                 ProdutoDao produtoDao = new ProdutoDao();
                 Produto produto = new Produto();

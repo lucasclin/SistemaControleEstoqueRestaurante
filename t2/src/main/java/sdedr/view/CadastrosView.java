@@ -11,16 +11,19 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import sdedr.dao.IngredienteDao;
 import sdedr.dao.ProdutoDao;
 import sdedr.dao.ReceitaDao;
 import sdedr.dao.UnidadeDao;
 import sdedr.dao.UserDao;
+import sdedr.model.Ingrediente;
 import sdedr.model.Produto;
 import sdedr.model.Receita;
 import sdedr.model.Unidade;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
 import sdedr.view.Cadastros.CadastroProdutoView;
+import sdedr.view.Cadastros.CadastroReceitaView;
 import sdedr.view.Cadastros.CadastroUnidadeView;
 import sdedr.view.Cadastros.CadastroUserView;
 import javafx.scene.input.MouseEvent;
@@ -330,7 +333,13 @@ public class CadastrosView extends Application {
 
                     produtoDao.remover(produto.getId());
                 } else if (receitasTable.isVisible()) {
+                    ReceitaDao receitaDao = new ReceitaDao();
+                    Receita receita = (Receita) itemSelecionado;
+                    IngredienteDao ingredienteDao = new IngredienteDao();
+                    
+                    ingredienteDao.remover(receita.getId());
 
+                    receitaDao.remover(receita.getId());
                 }
 
                 tabelaAtiva.refresh();
@@ -364,7 +373,8 @@ public class CadastrosView extends Application {
                 CadastroProdutoView cadastroProdutoView = new CadastroProdutoView();
                 cadastroProdutoView.start(new Stage());
             } else if (tabelaAtiva == receitasTable) {
-
+                CadastroReceitaView cadastroReceitaView = new CadastroReceitaView();
+                cadastroReceitaView.start(new Stage());
             }
         });
     }

@@ -61,7 +61,7 @@ public class ReceitaDao {
     }
   }
 
-  public boolean remover(int id){
+  public boolean remover(Long id){
     String sql = "DELETE FROM receita "
                + "WHERE id = ?";
     Connection con = null;
@@ -75,7 +75,7 @@ public class ReceitaDao {
 
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, id);
+      cmd.setLong(1, id);
 
       cmd.executeUpdate();
       con.commit();

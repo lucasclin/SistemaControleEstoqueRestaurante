@@ -56,6 +56,10 @@ public class Receita {
 		this.cardapio = cardapio;
 	}
 
+	public void setCardapio(int index){
+		this.cardapio = Cardapio.tipoCardapioInt(index);
+	}
+
 	public List<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}

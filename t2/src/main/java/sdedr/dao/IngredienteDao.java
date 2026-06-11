@@ -117,6 +117,36 @@ public class IngredienteDao {
     }
   }
 
+  public boolean remover(Long id){
+    String sql = "DELETE FROM ingrediente "
+               + "WHERE id_r = ?";
+    Connection con = null;
+    PreparedStatement cmd = null;
+
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+
+      con.setAutoCommit(false);
+      cmd = con.prepareStatement(sql);
+      cmd.setLong(1, id);
+
+      cmd.executeUpdate();
+      con.commit();
+
+      return true;
+
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
+
   public boolean retornarIngredientesReceita(Receita receita, ArrayList<Ingrediente> ingredientesReceita) {
     String sql = "SELECT * FROM ingrediente WHERE id_r = ?";
     Connection con = null;
