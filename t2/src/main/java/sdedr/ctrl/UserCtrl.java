@@ -32,5 +32,19 @@ public class UserCtrl {
   public boolean retornarUsuario(String nome, User resultado) {
     UserDao userDao = new UserDao();
     return userDao.retornar(nome, resultado);
+  }  
+
+  /* utilizado em View MovimentacaoEstoqueDeProduto */
+  public boolean confirmarPermissao(int acesso) {
+    return this.usuarioAtual.getTipoCadastro().equals(TipoCadastro.tipoCadastroInt(acesso));
   }
+
+  public String retornarNomeOuCadastro(boolean nome) {
+    return nome ? this.usuarioAtual.getNome() : this.usuarioAtual.getTipoCadastro().name();
+  }  
+
+  public int retornarId() {
+    return this.usuarioAtual.getId().intValue();
+  }
+
 }

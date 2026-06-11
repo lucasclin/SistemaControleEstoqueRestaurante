@@ -29,4 +29,15 @@ public class ProdutoCtrl {
       return null;
     }
   }
+
+  private ArrayList<Produto> produtos = new ArrayList<>();
+
+  public boolean prepararProdutos() {
+    ProdutoDao produtoDao = new ProdutoDao();
+    return produtoDao.retornarTudo(produtos);
+  }
+
+  public ArrayList<Produto> getProdutos() {
+    return this.produtos;
+  }
 }

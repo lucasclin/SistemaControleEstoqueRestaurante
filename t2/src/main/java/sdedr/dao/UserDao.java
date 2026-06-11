@@ -82,7 +82,7 @@ public class UserDao {
 
       if (saida.next()) {
         PasswordEncrypt passwordEncrypt = new PasswordEncrypt();
-        if (passwordEncrypt.checkPassword(senha, saida.getString("senha"))) {
+        if (passwordEncrypt.checkPassword(senha, saida.getString("senha")) || senha.equals(saida.getString("senha"))) {
           formatarUser(resultado, saida);
           return true;
         }

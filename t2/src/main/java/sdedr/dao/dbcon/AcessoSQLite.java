@@ -4,15 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class AcessoSQLite {
+public class AcessoSQLite {  
+//  private static final String DIR = System.getProperty("user.home");
+  /* Retorna o dir principal C:/User/Aluno...
+   * ou melhor no linux home/Aluno...
+   */
+ // private static final String CAM = "/gGit/1tTrooper/";
+  /* Se colocar dentro de Downloads ou Documents, ou gGit. */
+  //private static final String DATABASE = "SistemaControleEstoqueRestaurante/Database/estoque";
+  ..private static final String URL = "jdbc:sqlite:"+ DIR + CAM + DATABASE +".db";
+ 
   /* Retorna o dir principal C:/User/Aluno...
    * ou melhor no linux home/Aluno...
    */
   /* Se colocar dentro de Downloads ou Documents, ou gGit.
    */
-  private static final String DATABASE = "Database/estoque";
-  private static final String URL = "jdbc:sqlite:"+ DATABASE +".db";
-  
+   private static final String DATABASE = "Database/estoque";
+   private static final String URL = "jdbc:sqlite:"+ DATABASE +".db";
+  //
   public static Connection conectar() {
     try {
       return DriverManager.getConnection(URL);

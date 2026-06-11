@@ -15,6 +15,21 @@ import sdedr.model.Produto;
 import sdedr.model.MovimentacaoEstoqueDeProduto;
 import sdedr.model.Enum.TipoMovimentacao;
 import sdedr.model.User;
+       /*
+        CREATE TABLE movimentacao(
+        id INTEGER,
+        id_p INTEGER,
+        id_u INTEGER,
+        tipoMovimentacao INTEGER,
+        dataMovimentacao TEXT,
+        quantidade NUMERIC,
+        precoUnitario NUMERIC,
+        dataValidade TEXT,
+        observacao TEXT,
+        FOREIGN KEY (id_p) REFERENCES produto(id),
+        FOREIGN KEY (id_u) REFERENCES user(id),
+        PRIMARY KEY(id)
+);*/
 
 public class MovimentacaoDao {
 
@@ -41,23 +56,62 @@ public class MovimentacaoDao {
     resultado.setPrecoUnitario(saida.getBigDecimal("precoUnitario"));
     resultado.setValidadeLote(LocalDate.parse(saida.getString("dataValidade")));
     resultado.setObservacao(saida.getString("observacao"));
+  }  
+
+  private void formatarMovimentacaoSemOutraDao(MovimentacaoEstoqueDeProduto resultado, ResultSet saida) throws SQLException {
+    resultado.setId(Long.valueOf(saida.getInt("id")));
+    resultado.setTipoMovimentacao(TipoMovimentacao.tipoMovimentacaoInt(saida.getInt("tipoMovimentacao")));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    resultado.setDataHora(LocalDateTime.parse(saida.getString("dataMovimentacao"), formatter));
+    resultado.setQuantidade(saida.getBigDecimal("quantidade"));
+    resultado.setPrecoUnitario(saida.getBigDecimal("precoUnitario"));
+    resultado.setValidadeLote(LocalDate.parse(saida.getString("dataValidade")));
+    resultado.setObservacao(saida.getString("observacao"));
   }
-        /*
-        CREATE TABLE movimentacao(
-        id INTEGER,
-        id_p INTEGER,
-        id_u INTEGER,
-        tipoMovimentacao INTEGER,
-        dataMovimentacao TEXT,
-        quantidade NUMERIC,
-        precoUnitario NUMERIC,
-        dataValidade TEXT,
-        observacao TEXT,
-        FOREIGN KEY (id_p) REFERENCES produto(id),
-        FOREIGN KEY (id_u) REFERENCES user(id),
-        PRIMARY KEY(id)
-);*/
-  public boolean retornar(int id, MovimentacaoEstoqueDeProduto resultado) {
+
+  public boolean retornarTudoPorId(ArrayList<MovimentacaoEstoqueDeProduto> resultado, int idUser) {
+    String sql = "SELECT m.*, p.nome AS p_nome "
+               + "FROM movimentacao AS m LEFT JOIN user AS us       ON (m.id_u = us.id) "
+               +                        "LEFT JOIN produto AS p     ON (m.id_p = p.id) "
+               +                        "LEFT JOIN tipoUnidade AS t ON (p.id = t.id_p) "
+               +                        "LEFT JOIN unidade AS u     ON (t.id_u = u.id) "
+               + "WHERE (us.id = ?) ";
+    Connection con = null;
+    PreparedStatement cmd;
+    ResultSet saida;
+    try {
+      con = AcessoSQLite.conectar();
+      if (con == null) {
+        return false;
+      }
+
+      cmd = con.prepareStatement(sql);
+      cmd.setInt(1, idUser);
+      saida = cmd.executeQuery();
+
+      while (saida.next()) {
+        MovimentacaoEstoqueDeProduto novoAux = new MovimentacaoEstoqueDeProduto();
+        formatarMovimentacaoSemOutraDao(novoAux, saida);
+
+        if(saida.getString("p_nome") != null) {
+          Produto produtoTmp = new Produto();
+          produtoTmp.setNome(saida.getString("p_nome"));
+          novoAux.setProduto(produtoTmp);
+        }
+
+        resultado.add(novoAux);
+      }
+      
+      return resultado.isEmpty() ? false : true;
+    } catch (SQLException deuRuim) {
+      System.out.println("ERRO [retornarTudo]:" + deuRuim.getMessage());
+      return false;
+    } finally {
+      AcessoSQLite.desconectar(con);
+    }
+  }
+
+   public boolean retornar(int id, MovimentacaoEstoqueDeProduto resultado) {
     String sql = "SELECT * FROM movimentacao WHERE id = ?";
     Connection con = null;
     PreparedStatement cmd;

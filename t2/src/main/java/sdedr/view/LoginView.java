@@ -2,6 +2,8 @@ package sdedr.view;
 
 import sdedr.App;
 import sdedr.ctrl.UserCtrl;
+import sdedr.ctrl.CtrlCtrl;
+import sdedr.view.DefineView;
 import sdedr.model.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,12 +26,10 @@ import javafx.stage.Stage;
 public class LoginView extends GridPane {
 
   public LoginView(App loop) {
-
-    UserCtrl userCtrl = new UserCtrl();
+    CtrlCtrl ctrlCtrl = new CtrlCtrl();
     /* Config do GridPane, para mais veja:
      * https://fxdocs.github.io/docs/html5/#_gridpane
-     * P.S. seção 4.5
-     */ 
+     * P.S. seção 4.5 */ 
     this.setAlignment(Pos.CENTER);
     this.setHgap(10);
     this.setVgap(10);
@@ -60,10 +60,12 @@ public class LoginView extends GridPane {
     PasswordField senhaPasswordField = new PasswordField();
     this.add(senhaPasswordField, 1, 2);
 
-    if (userCtrl.primeiroUso()) {
-
+    if (ctrlCtrl.userCtrl.primeiroUso()) {
       /* Adiciona no grid: botão dentro de uma grupo, posição (1,4) */
-      Button logarButton = new Button("Logar");
+      Button logarButton = new Button("Logar");     
+      logarButton.setStyle(DefineView.estiloBotao);
+      logarButton.setOnMousePressed(e -> logarButton.setStyle(DefineView.estiloBotaoAtivo));
+      logarButton.setOnMouseReleased(e -> logarButton.setStyle(DefineView.estiloBotao));
       HBox grupoHBox = new HBox(10);
       grupoHBox.setAlignment(Pos.BOTTOM_RIGHT);
       grupoHBox.getChildren().add(logarButton);
@@ -81,19 +83,22 @@ public class LoginView extends GridPane {
         if(usuario.isEmpty() || senha.isEmpty()) {
           respostaDeLogarText.setText("Por favor preencha todos os campos.");
         } else {
-          if(userCtrl.confirmarLogin(usuario, senha)) {
+          if(ctrlCtrl.userCtrl.confirmarLogin(usuario, senha)) {
             respostaDeLogarText.setText("Ok.");
-
+            if (ctrlCtrl.userCtrl.confirmarPermissao(3)) {
+              loop.vezDeMovimentacaoEstoqueView(ctrlCtrl);
+            } else {
             Stage stageMenu = new Stage();
             User user = new User();
-            userCtrl.retornarUsuario(usuario, user);
+            ctrlCtrl.userCtrl.retornarUsuario(usuario, user);
 
             MenuView menu = new MenuView(usuario, user);
           
             menu.start(stageMenu);
 
             Stage janelaLogin = (Stage) logarButton.getScene().getWindow();
-            janelaLogin.close();
+            janelaLogin.close(); 
+            }
           } else {
             respostaDeLogarText.setText("Valores errados.");
           }
@@ -120,7 +125,7 @@ public class LoginView extends GridPane {
         if(usuario.isEmpty() || senha.isEmpty()) {
           respostaDeCadastrarText.setText("Por favor preencha todos os campos.");
         } else {
-          if(userCtrl.cadastrarPrimeiroLogin(usuario, senha)) {
+          if(ctrlCtrl.userCtrl.cadastrarPrimeiroLogin(usuario, senha)) {
             respostaDeCadastrarText.setText("Ok.");
           } else {
             respostaDeCadastrarText.setText("Tente outra vez.");
