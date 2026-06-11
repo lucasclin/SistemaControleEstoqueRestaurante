@@ -51,4 +51,8 @@ public class User {
 	public void setTipoCadastro(TipoCadastro tipoCadastro) {
 		this.tipoCadastro = tipoCadastro;
 	}
+
+	public void setTipoCadastro(int index){
+		this.tipoCadastro = TipoCadastro.tipoCadastroInt(index);
+	}
 }

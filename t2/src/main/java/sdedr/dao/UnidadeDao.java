@@ -86,6 +86,7 @@ public class UnidadeDao {
     Connection con = null;
     PreparedStatement cmd = null;
 
+
     try {
       con = AcessoSQLite.conectar();
       if (con == null) {
@@ -95,6 +96,9 @@ public class UnidadeDao {
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
       cmd.setInt(1, id);
+
+      cmd.executeUpdate();
+      con.commit();
 
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());
@@ -115,7 +119,11 @@ public class UnidadeDao {
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
       cmd.setInt(1, id);
-      return false;
+
+      cmd.executeUpdate();
+      con.commit();
+      
+      return true;
 
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());

@@ -97,7 +97,7 @@ public class UserDao {
     }
   }
 
-  public boolean remover(int id){
+  public boolean remover(Long id){
     String sql = "DELETE FROM user "
                + "WHERE id = ?";
     Connection con = null;
@@ -111,9 +111,12 @@ public class UserDao {
 
       con.setAutoCommit(false);
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, id);
-      return false;
+      cmd.setLong(1, id);
 
+      cmd.executeUpdate();
+      con.commit();
+      
+      return true;
     } catch (SQLException deuRuim) {
       System.out.println("ERRO" + deuRuim.getMessage());
       return false;
