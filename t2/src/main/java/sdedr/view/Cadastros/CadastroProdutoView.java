@@ -23,7 +23,7 @@ import javafx.util.Duration;
 public class CadastroProdutoView extends Application {
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("My Awesome Window");
+        primaryStage.setTitle("Cadastro de Produtos");
 
         Pane pane = new Pane();
         pane.setPrefSize(899, 450);
@@ -152,6 +152,7 @@ public class CadastroProdutoView extends Application {
 
         Scene scene = new Scene(pane, 899, 450);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         ConfirmarButton.setOnAction(event -> {

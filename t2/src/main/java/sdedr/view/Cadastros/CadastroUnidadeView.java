@@ -87,6 +87,7 @@ public class CadastroUnidadeView extends Application {
 
         Scene scene = new Scene(pane, 899, 450);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         ConfirmarButton.setOnAction(event -> {
