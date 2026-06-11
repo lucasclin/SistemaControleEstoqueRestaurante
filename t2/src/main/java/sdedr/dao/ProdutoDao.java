@@ -1,7 +1,7 @@
 package sdedr.dao;
 
 import java.util.ArrayList;
-
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +9,8 @@ import java.sql.SQLException;
 
 import sdedr.model.Produto;
 import sdedr.model.Unidade;
+import sdedr.model.Enum.TipoCadastro;
+import sdedr.model.Enum.TipoMovimentacao;
 import sdedr.dao.dbcon.AcessoSQLite;
 
 /* CREATE TABLE produto(
@@ -139,7 +141,7 @@ public class ProdutoDao {
     }
   }
 
-  public boolean retornar(int id, Produto resultado) {
+  public boolean retornar(Long id, Produto resultado) {
     String sql = "SELECT * FROM produto WHERE id = ?";
     Connection con = null;
     PreparedStatement cmd;
@@ -152,7 +154,7 @@ public class ProdutoDao {
       con.setAutoCommit(false);
 
       cmd = con.prepareStatement(sql);
-      cmd.setInt(1, id);
+      cmd.setLong(1, id);
       saida = cmd.executeQuery();
 
       /* 1 - Existe conta com tal email? */
@@ -268,6 +270,49 @@ public class ProdutoDao {
       return false;
     } finally {
       AcessoSQLite.desconectar(con);
+    }
+  }
+
+  public boolean atualizarQuantidade(Produto produto, BigDecimal quantidade_a_mudar, TipoMovimentacao movimentacao){
+    Produto tmpProduto = new Produto();
+    ProdutoDao produtoDao = new ProdutoDao();
+    produtoDao.retornar((produto.getId()), tmpProduto);
+
+    if (quantidade_a_mudar.compareTo(produto.getQuantidadeEstoque()) <= 0){
+
+      String sql = "UPDATE produto SET quantidadeEstoque = ? "
+                + "WHERE id = ?";
+      Connection con = null;
+      PreparedStatement cmd = null;
+
+      try {
+        con = AcessoSQLite.conectar();
+        if (con == null) {
+          return false;
+        }
+
+        con.setAutoCommit(false);
+        cmd = con.prepareStatement(sql);
+        if(movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA){
+          cmd.setBigDecimal(1, (produto.getQuantidadeEstoque().subtract(quantidade_a_mudar)));
+        } else{
+          cmd.setBigDecimal(1, (produto.getQuantidadeEstoque().add(quantidade_a_mudar)));
+        }
+        cmd.setLong(2, produto.getId());
+
+        cmd.executeUpdate();
+        con.commit();
+
+        return true;
+      } catch (SQLException deuRuim) {
+        System.out.println("ERRO" + deuRuim.getMessage());
+        return false;
+      } finally {
+        AcessoSQLite.desconectar(con);
+      }
+    }
+    else {
+      return false;
     }
   }
 }

@@ -39,7 +39,7 @@ public class MovimentacaoDao {
 
     ProdutoDao produtoDao = new ProdutoDao();
     Produto produto = new Produto();
-    produtoDao.retornar(saida.getInt("id_p"), produto);
+    produtoDao.retornar(saida.getLong("id_p"), produto);
     resultado.setProduto(produto);
 
     UserDao userDao = new UserDao();

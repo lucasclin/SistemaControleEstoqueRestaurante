@@ -1,16 +1,9 @@
 package sdedr;
 
 import sdedr.view.LoginView;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.scene.text.Font;
 import sdedr.view.*;
 import sdedr.ctrl.CtrlCtrl;
 

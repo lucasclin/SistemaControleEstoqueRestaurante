@@ -1,9 +1,7 @@
 package sdedr.view;
 
 import sdedr.App;
-import sdedr.view.DefineView;
 import sdedr.ctrl.CtrlCtrl;
-import sdedr.ctrl.*;
 import sdedr.model.Produto;
 import sdedr.model.MovimentacaoEstoqueDeProduto;
 import sdedr.model.Enum.TipoMovimentacao;
@@ -11,30 +9,18 @@ import sdedr.model.User;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.lang.Exception;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.layout.Region;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 import javafx.scene.Scene;
 import javafx.util.StringConverter;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 
 /* Class MovimentacaoEstoqueView
  * (obj.)
@@ -86,10 +72,7 @@ public class MovimentacaoEstoqueView extends GridPane {
     inserirButton.setOnMouseReleased(e -> inserirButton.setStyle(DefineView.estiloBotao));
     this.add(inserirHBox, 4, 1);
 
-    inserirButton.setOnAction(event -> {
-      Stage principalStage = (Stage) this.getScene().getWindow();
-      formularioInsercao(principalStage, aux);
-    });
+
 
     TableView<MovimentacaoEstoqueDeProduto> movTableView = tabelaMovimentacaoEstoqueDeProduto();        
     Text subTituloText = new Text("Histórico:");
@@ -98,6 +81,23 @@ public class MovimentacaoEstoqueView extends GridPane {
       movTableView.getItems().addAll(aux.movimentacaoEstoqueDeProdutoCtrl.getMovimentacaoEstoqueDeProdutos());
     }
     this.add(movTableView, 0, 3, 4, 1);
+
+    inserirButton.setOnAction(event -> {
+      Stage principalStage = (Stage) this.getScene().getWindow();
+      
+      // Abre a janela e trava a execução aqui até ela fechar
+      formularioInsercao(principalStage, aux);
+      
+      // 1. Limpa os itens antigos da tabela
+      movTableView.getItems().clear();
+      
+      // 2. Manda o controller buscar os dados atualizados do banco
+      if (aux.movimentacaoEstoqueDeProdutoCtrl.prepararMovimentacoes(aux.userCtrl.retornarId())) {
+        // 3. Adiciona a nova lista atualizada na tabela
+        movTableView.getItems().clear();
+        movTableView.getItems().addAll(aux.movimentacaoEstoqueDeProdutoCtrl.getMovimentacaoEstoqueDeProdutos());
+      }
+    });
   }
 
   private void formularioInsercao(Stage principalStage, CtrlCtrl aux) {
@@ -232,6 +232,7 @@ public class MovimentacaoEstoqueView extends GridPane {
                   Alert alert = new Alert(Alert.AlertType.ERROR, "Erro db.");
                   alert.showAndWait();
                 }
+
                 terceiraStage.close();
                 secundarioStage.close();
               } else {
@@ -252,7 +253,7 @@ public class MovimentacaoEstoqueView extends GridPane {
       }
     });
 
-    Scene scene = new Scene(formularioGrid, 360, 180);
+    Scene scene = new Scene(formularioGrid, 720, 320);
     secundarioStage.setScene(scene);
     secundarioStage.showAndWait();
   }
@@ -276,7 +277,7 @@ public class MovimentacaoEstoqueView extends GridPane {
     quantidadeColuna.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
     precoUnitarioColuna.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
     validadeColuna.setCellValueFactory(new PropertyValueFactory<>("validadeLote"));
-    obsColuna.setCellValueFactory(new PropertyValueFactory<>("obs"));
+    obsColuna.setCellValueFactory(new PropertyValueFactory<>("observacao"));
     tipoColuna.setCellValueFactory(new PropertyValueFactory<>("tipoMovimentacao"));
 
     produtoColuna.setCellValueFactory(cellData -> {

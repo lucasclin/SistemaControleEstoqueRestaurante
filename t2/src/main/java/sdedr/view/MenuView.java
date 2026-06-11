@@ -141,7 +141,6 @@ public class MenuView{
             AreaTexto.setPrefHeight(novo.doubleValue() - 120);
         });
 
-        // Garante que ela já comece com o tamanho correto se a janela abrir maior
         AreaTexto.setPrefWidth(primaryStage.getWidth() - 298);
         AreaTexto.setPrefHeight(primaryStage.getHeight() - 120);
 
@@ -179,10 +178,10 @@ public class MenuView{
                 for (MovimentacaoEstoqueDeProduto m : listaMovimentacoes) {
                     String linha;
                     if (m.getProduto().getUnidade() != null) {
-                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | Qtd: " + m.getQuantidade() + " " + m.getProduto().getUnidade().getNome() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";  
+                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | OBS.: " + m.getObservacao() + " | Qtd: " + m.getQuantidade() + " " + m.getProduto().getUnidade().getNome() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";  
                     }
                     else{
-                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";
+                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | OBS.: " + m.getObservacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";
                     }
                     AreaTexto.appendText(linha);
                 }
@@ -203,7 +202,7 @@ public class MenuView{
         });
 
         ReceitasButton.setOnAction(event -> {
-            if(user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.CHEF) {
+            if(user.getTipoCadastro() == TipoCadastro.ADMIN) {
                 AreaTexto.setText("--- RECEITAS CADASTRADAS ---\n\n");
                 ReceitaCtrl receitaCtrl = new ReceitaCtrl();
                 receitaCtrl.prepararReceitas();
@@ -226,7 +225,6 @@ public class MenuView{
                     }
                     for (Ingrediente i : ingredientes) {
                         String linhaIngrediente;
-                        // Verifica se o produto tem unidade antes de tentar pegar o nome dela
                         if (i.getProduto().getUnidade() != null) {
                             linhaIngrediente = "    - " + i.getProduto().getNome() + ": " + i.getQuantidadeProduto() + " " + i.getProduto().getUnidade().getNome() + "\n";
                         } else {
@@ -236,7 +234,10 @@ public class MenuView{
                     }
                 }
             }
-            else {
+            else if (user.getTipoCadastro() == TipoCadastro.CHEF){
+                ReceitasView receitasView = new ReceitasView(user);
+                receitasView.start(new Stage());         
+            }else{
                 AreaTexto.setText("Acesso negado. Você não tem permissão para acessar as receitas.");
             }
         });

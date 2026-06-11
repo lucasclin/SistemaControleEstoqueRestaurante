@@ -28,7 +28,7 @@ public class IngredienteDao {
   private void formatarIngrediente(Ingrediente resultado, ResultSet saida) throws SQLException {
     ProdutoDao produtoDao = new ProdutoDao();
     Produto produto = new Produto();
-    produtoDao.retornar(saida.getInt("id_p"), produto);
+    produtoDao.retornar(saida.getLong("id_p"), produto);
 
     ReceitaDao receitaDao = new ReceitaDao();
     Receita receita = new Receita();

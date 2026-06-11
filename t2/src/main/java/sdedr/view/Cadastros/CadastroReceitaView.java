@@ -111,7 +111,7 @@ public class CadastroReceitaView extends Application {
 
         cardapioCmb.setItems(opcoes);
 
-        cardapioCmb.setPromptText("Selecione a permissão");
+        cardapioCmb.setPromptText("Selecione o cardápio");
         cardapioCmb.setLayoutX(80.00);
         cardapioCmb.setLayoutY(219.00);
         

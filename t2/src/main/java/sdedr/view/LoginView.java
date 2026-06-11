@@ -1,9 +1,7 @@
 package sdedr.view;
 
 import sdedr.App;
-import sdedr.ctrl.UserCtrl;
 import sdedr.ctrl.CtrlCtrl;
-import sdedr.view.DefineView;
 import sdedr.model.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
