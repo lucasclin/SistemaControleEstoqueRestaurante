@@ -20,7 +20,6 @@ import sdedr.model.Produto;
 import sdedr.model.Receita;
 import sdedr.model.Unidade;
 import sdedr.model.User;
-import sdedr.model.Enum.TipoCadastro;
 import sdedr.view.Cadastros.CadastroIngredienteView;
 import sdedr.view.Cadastros.CadastroProdutoView;
 import sdedr.view.Cadastros.CadastroReceitaView;
