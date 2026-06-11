@@ -34,7 +34,7 @@ public class CadastroReceitaView extends Application {
         CadastrarReceitaTXT.setLayoutY(19.359375);
         CadastrarReceitaTXT.setPrefWidth(150);
         CadastrarReceitaTXT.setPrefHeight(19);
-        CadastrarReceitaTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Lexend.ttf"), 14.00));
+        CadastrarReceitaTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         CadastrarReceitaTXT.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(CadastrarReceitaTXT);
 
@@ -44,7 +44,7 @@ public class CadastroReceitaView extends Application {
         nomeInput.setPrefWidth(224.00);
         nomeInput.setPrefHeight(24.00);
         nomeInput.setPromptText("Nome da receita");
-        nomeInput.setFont(Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Lexend.ttf"), 14.00));
+        nomeInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         nomeInput.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
         pane.getChildren().add(nomeInput);
 
@@ -53,7 +53,7 @@ public class CadastroReceitaView extends Application {
         element6.setLayoutY(55);
         element6.setPrefWidth(235);
         element6.setPrefHeight(17);
-        element6.setFont(Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Lexend.ttf"), 14.00));
+        element6.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         element6.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(element6);
 
@@ -63,7 +63,7 @@ public class CadastroReceitaView extends Application {
         ConfirmarButton.setPrefWidth(106.00);
         ConfirmarButton.setPrefHeight(69.00);
         ConfirmarButton.setDisable(false);
-        ConfirmarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Lexend.ttf"), 14.00));
+        ConfirmarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         ConfirmarButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
         ConfirmarButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ConfirmarButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ConfirmarButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ConfirmarButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
@@ -75,7 +75,7 @@ public class CadastroReceitaView extends Application {
         precoReceitaInput.setPrefWidth(224.00);
         precoReceitaInput.setPrefHeight(24.00);
         precoReceitaInput.setPromptText("Preço da receita");
-        precoReceitaInput.setFont(Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Lexend.ttf"), 14.00));
+        precoReceitaInput.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         precoReceitaInput.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
         pane.getChildren().add(precoReceitaInput);
 
@@ -84,7 +84,7 @@ public class CadastroReceitaView extends Application {
         cardapioTXT.setLayoutY(189);
         cardapioTXT.setPrefWidth(300);
         cardapioTXT.setPrefHeight(19);
-        cardapioTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/resources/fonts/Lexend.ttf"), 14.00));
+        cardapioTXT.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
         cardapioTXT.setStyle("-fx-text-fill: #1b1b1b;");
         pane.getChildren().add(cardapioTXT);
 

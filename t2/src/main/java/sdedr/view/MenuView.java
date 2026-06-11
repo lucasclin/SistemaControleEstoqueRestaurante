@@ -213,7 +213,7 @@ public class MenuView{
                     IngredienteCtrl ingredienteCtrl = new IngredienteCtrl();
                     ingredienteCtrl.retornarIngredientesReceita(r, ingredientes);
 
-                    if (ingredientes.isEmpty()) {
+                    if (ingredientes.isEmpty() || ingredientes == null) {
                         AreaTexto.appendText("  (Sem ingredientes cadastrados)\n");
                     } else {
                         
@@ -221,9 +221,15 @@ public class MenuView{
                         AreaTexto.appendText("  Ingredientes:\n");
                     }
                     for (Ingrediente i : ingredientes) {
-                                    String linhaIngrediente = "    - " + i.getProduto().getNome() + ": " + i.getQuantidadeProduto() + " " + i.getProduto().getUnidade().getNome() + "\n";
-                                    AreaTexto.appendText(linhaIngrediente);
-                    }  
+                        String linhaIngrediente;
+                        // Verifica se o produto tem unidade antes de tentar pegar o nome dela
+                        if (i.getProduto().getUnidade() != null) {
+                            linhaIngrediente = "    - " + i.getProduto().getNome() + ": " + i.getQuantidadeProduto() + " " + i.getProduto().getUnidade().getNome() + "\n";
+                        } else {
+                            linhaIngrediente = "    - " + i.getProduto().getNome() + ": " + i.getQuantidadeProduto() + "\n";
+                        }
+                        AreaTexto.appendText(linhaIngrediente);
+                    }
                 }
             }
             else {

@@ -22,6 +22,7 @@ import sdedr.model.Receita;
 import sdedr.model.Unidade;
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
+import sdedr.view.Cadastros.CadastroIngredienteView;
 import sdedr.view.Cadastros.CadastroProdutoView;
 import sdedr.view.Cadastros.CadastroReceitaView;
 import sdedr.view.Cadastros.CadastroUnidadeView;
@@ -336,7 +337,7 @@ public class CadastrosView extends Application {
                     ReceitaDao receitaDao = new ReceitaDao();
                     Receita receita = (Receita) itemSelecionado;
                     IngredienteDao ingredienteDao = new IngredienteDao();
-                    
+
                     ingredienteDao.remover(receita.getId());
 
                     receitaDao.remover(receita.getId());
@@ -348,6 +349,11 @@ public class CadastrosView extends Application {
                 RemoverButton.setText("Remover");
                 RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
             }
+        });
+
+        IngredientesButton.setOnAction(event ->{
+            CadastroIngredienteView cadastroIngredienteView = new CadastroIngredienteView();
+            cadastroIngredienteView.start(new Stage());
         });
 
         CadastrarButton.setOnAction(event -> {
