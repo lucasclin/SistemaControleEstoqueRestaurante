@@ -274,15 +274,10 @@ public class ProdutoDao {
   }
 
   public boolean atualizarQuantidade(Produto produto, BigDecimal quantidade_a_mudar, TipoMovimentacao movimentacao){
-    // Fetch fresh data from database to ensure current quantity is accurate
     Produto tmpProduto = new Produto();
     ProdutoDao produtoDao = new ProdutoDao();
     produtoDao.retornar((produto.getId()), tmpProduto);
 
-    // Validation logic based on movement type:
-    // - SAIDA/PERDA: can only remove up to current quantity
-    // - ENTRADA: must be positive
-    // - AJUSTE: allows both positive (increase) and negative (decrease)
     boolean isValid = (quantidade_a_mudar.compareTo(tmpProduto.getQuantidadeEstoque()) <= 0 && (movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA))
        || (quantidade_a_mudar.compareTo(BigDecimal.ZERO) >= 0 && movimentacao == TipoMovimentacao.ENTRADA)
        || movimentacao == TipoMovimentacao.AJUSTE;
@@ -304,7 +299,6 @@ public class ProdutoDao {
         if(movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA){
           cmd.setBigDecimal(1, (tmpProduto.getQuantidadeEstoque().subtract(quantidade_a_mudar)));
         } else{
-          // ENTRADA and AJUSTE: add the value (AJUSTE with negative will reduce)
           cmd.setBigDecimal(1, (tmpProduto.getQuantidadeEstoque().add(quantidade_a_mudar)));
         }
         cmd.setLong(2, tmpProduto.getId());
