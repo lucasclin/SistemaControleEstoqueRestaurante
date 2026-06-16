@@ -1,3 +1,21 @@
+DROP TABLE ingrediente;
+DROP TABLE movimentacao;
+DROP TABLE produto;
+DROP TABLE receita;
+DROP TABLE unidade;
+DROP TABLE tipoUnidade;
+
+CREATE TABLE produto(
+	id                    INTEGER,
+	nome                  TEXT,
+	precoAtual            NUMERIC,
+	quantidadeEstoque     NUMERIC,
+	estoqueMinimo         NUMERIC,
+	permiteFracionamento  INTEGER,
+	ativo                 INTEGER, 
+	PRIMARY KEY(id)
+);
+
 CREATE TABLE receita(
 	id        INTEGER,
 	preco     NUMERIC,

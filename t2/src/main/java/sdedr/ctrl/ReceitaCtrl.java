@@ -17,4 +17,14 @@ public class ReceitaCtrl {
   public ArrayList<Receita> getReceitas() {
     return this.receitas;
   }
+
+  public boolean cadastrarReceita(Receita receita) {
+    ReceitaDao receitaDao = new ReceitaDao();
+    return receitaDao.inserir(receita);
+  }
+
+  public boolean removerReceita(Long id) {
+    ReceitaDao receitaDao = new ReceitaDao();
+    return receitaDao.remover(id);
+  }
 }

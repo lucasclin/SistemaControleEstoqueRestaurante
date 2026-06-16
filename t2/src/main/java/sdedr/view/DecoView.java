@@ -16,7 +16,7 @@ public class DecoView extends VBox {
 
   public DecoView(GridPane semDecoracaoView) {
     this.setAlignment(Pos.TOP_CENTER);
-    this.setStyle("-fx-background-color: #b0c4de;");
+    this.setStyle(DefineView.estiloTela);
     /* Pensei em uma linha meio Informix para decoração */
     Region linhaRoxo = new Region();
     linhaRoxo.setPrefHeight(12);

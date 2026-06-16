@@ -2,8 +2,10 @@ package sdedr.view;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import sdedr.ctrl.IngredienteCtrl;
@@ -34,7 +36,7 @@ public class MenuView{
 
         Pane pane = new Pane();
         pane.setPrefSize(903, 452);
-        pane.setStyle("-fx-background-color: #eeeeee;");
+        pane.setStyle(DefineView.estiloTela);
 
         Button MovimentarEstoqueButton = new Button("Movimentar Estoque");
         MovimentarEstoqueButton.setLayoutX(55.00);
@@ -43,7 +45,7 @@ public class MenuView{
         MovimentarEstoqueButton.setPrefHeight(47.00);
         MovimentarEstoqueButton.setDisable(false);
         MovimentarEstoqueButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        MovimentarEstoqueButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        MovimentarEstoqueButton.setStyle(DefineView.estiloBotaoBase);
         MovimentarEstoqueButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { MovimentarEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         MovimentarEstoqueButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { MovimentarEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(MovimentarEstoqueButton);
@@ -55,7 +57,7 @@ public class MenuView{
         ReceitasButton.setPrefHeight(47.00);
         ReceitasButton.setDisable(false);
         ReceitasButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        ReceitasButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        ReceitasButton.setStyle(DefineView.estiloBotaoBase);
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(ReceitasButton);
@@ -67,7 +69,7 @@ public class MenuView{
         InventarioButton.setPrefHeight(47.00);
         InventarioButton.setDisable(false);
         InventarioButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        InventarioButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        InventarioButton.setStyle(DefineView.estiloBotaoBase);
         InventarioButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { InventarioButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         InventarioButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { InventarioButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(InventarioButton);
@@ -79,7 +81,7 @@ public class MenuView{
         RelatorioButton.setPrefHeight(47.00);
         RelatorioButton.setDisable(false);
         RelatorioButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        RelatorioButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        RelatorioButton.setStyle(DefineView.estiloBotaoBase);
         RelatorioButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { RelatorioButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         RelatorioButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { RelatorioButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(RelatorioButton);
@@ -91,7 +93,7 @@ public class MenuView{
         CardapiosButton.setPrefHeight(47.00);
         CardapiosButton.setDisable(false);
         CardapiosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        CardapiosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        CardapiosButton.setStyle(DefineView.estiloBotaoBase);
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(CardapiosButton);
@@ -103,20 +105,42 @@ public class MenuView{
         CadastrosButton.setPrefHeight(47.00);
         CadastrosButton.setDisable(false);
         CadastrosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        CadastrosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        CadastrosButton.setStyle(DefineView.estiloBotaoBase);
         CadastrosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CadastrosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(CadastrosButton);
 
-        TextArea AreaTexto = new TextArea("");
-        AreaTexto.setEditable(false);
+        TableView<Produto> inventarioTable = new TableView<>();
+        inventarioTable.setLayoutX(257.00);
+        inventarioTable.setLayoutY(55.00);
+        inventarioTable.setPrefWidth(605.00);
+        inventarioTable.setPrefHeight(363.00);
+        inventarioTable.setVisible(false);
+        inventarioTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        TableColumn<Produto, Long> produtoIdCol = new TableColumn<>("Código");
+        TableColumn<Produto, String> produtoNomeCol = new TableColumn<>("Produto");
+        TableColumn<Produto, String> produtoQtdCol = new TableColumn<>("Quantidade");
+        TableColumn<Produto, String> produtoUnidadeCol = new TableColumn<>("Unidade");
+        TableColumn<Produto, String> produtoFracionavelCol = new TableColumn<>("Fracionável");
+
+        produtoIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        produtoNomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        produtoQtdCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getQuantidadeEstoque().toString()));
+        produtoUnidadeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnidade() != null ? cellData.getValue().getUnidade().getNome() : ""));
+        produtoFracionavelCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isPermiteFracionamento() ? "Sim" : "Não"));
+
+        inventarioTable.getColumns().addAll(produtoIdCol, produtoNomeCol, produtoQtdCol, produtoUnidadeCol, produtoFracionavelCol);
+        pane.getChildren().add(inventarioTable);
+
+        TextArea AreaTexto = new TextArea();
         AreaTexto.setLayoutX(257.00);
         AreaTexto.setLayoutY(55.00);
         AreaTexto.setPrefWidth(605.00);
         AreaTexto.setPrefHeight(363.00);
-        AreaTexto.setPromptText("");
-        AreaTexto.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        AreaTexto.setStyle("-fx-control-inner-background: #ffffff; -fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px; -fx-prompt-text-fill: #737674;");
+        AreaTexto.setVisible(true);
+        AreaTexto.setEditable(false);
+        AreaTexto.setStyle(DefineView.estiloEntrada);
         pane.getChildren().add(AreaTexto);
 
         Label element7 = new Label("Olá, " + nomeUsuario);
@@ -125,7 +149,7 @@ public class MenuView{
         element7.setPrefWidth(105.8125);
         element7.setPrefHeight(18);
         element7.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        element7.setStyle("-fx-text-fill: #1b1b1b;");
+        element7.setStyle(DefineView.estiloTexto);
         pane.getChildren().add(element7);
 
         Scene scene = new Scene(pane, 903, 452);
@@ -135,40 +159,38 @@ public class MenuView{
 
         primaryStage.widthProperty().addListener((obs, velho, novo) -> {
             AreaTexto.setPrefWidth(novo.doubleValue() - 298);
+            inventarioTable.setPrefWidth(novo.doubleValue() - 298);
         });
 
         primaryStage.heightProperty().addListener((obs, velho, novo) -> {
             AreaTexto.setPrefHeight(novo.doubleValue() - 120);
+            inventarioTable.setPrefHeight(novo.doubleValue() - 120);
         });
 
         AreaTexto.setPrefWidth(primaryStage.getWidth() - 298);
         AreaTexto.setPrefHeight(primaryStage.getHeight() - 120);
+        inventarioTable.setPrefWidth(primaryStage.getWidth() - 298);
+        inventarioTable.setPrefHeight(primaryStage.getHeight() - 120);
 
         primaryStage.show();
 
         InventarioButton.setOnAction(event -> {
-            AreaTexto.setText("--- INVENTÁRIO DO ESTOQUE ---\n\n");
+            inventarioTable.getItems().clear();
+            inventarioTable.setVisible(true);
+            AreaTexto.setVisible(false);
+
             ProdutoCtrl produtoCtrl = new ProdutoCtrl();
             ArrayList<Produto> listaProdutos = produtoCtrl.getInventario();
 
-            for (Produto p : listaProdutos) {
-                String linha;
-
-                if (p.isPermiteFracionamento()) {
-                    if (p.getUnidade() != null) {
-                        linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " " + p.getUnidade().getNome() + " (Fracionável)" + "\n";
-                    } else {
-                        linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + " (Fracionável)" + "\n";
-                    }
-
-                } else {
-                    linha = "Codigo: " + p.getId() + " | Produto: " + p.getNome() + " | Qtd: " + p.getQuantidadeEstoque() + "\n";
-                }
-                AreaTexto.appendText(linha);
+            if (listaProdutos != null) {
+                inventarioTable.getItems().addAll(listaProdutos);
             }
         });
 
         RelatorioButton.setOnAction(event -> {
+            inventarioTable.setVisible(false);
+            inventarioTable.getItems().clear();
+            AreaTexto.setVisible(true);
             if (user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.ALMOXARIFADO) {
                 AreaTexto.setText("--- RELATÓRIO DE MOVIMENTAÇÕES ---\n\n");
 
@@ -178,21 +200,25 @@ public class MenuView{
                 for (MovimentacaoEstoqueDeProduto m : listaMovimentacoes) {
                     String linha;
                     if (m.getProduto().getUnidade() != null) {
-                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | OBS.: " + m.getObservacao() + " | Qtd: " + m.getQuantidade() + " " + m.getProduto().getUnidade().getNome() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";  
+                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | OBS.: " + m.getObservacao() + " | Qtd: " + m.getQuantidade() + " " + m.getProduto().getUnidade().getNome() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n\n";  
                     }
                     else{
-                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | OBS.: " + m.getObservacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n";
+                        linha = "Codigo: " + m.getId() + " | Produto: " + m.getProduto().getNome() + " | Tipo: " + m.getTipoMovimentacao() + " | OBS.: " + m.getObservacao() + " | Qtd: " + m.getQuantidade() + " | Usuario: " + m.getUserName() + " | Data: " + m.getDataHora() + " | Valor unitário (R$): " + m.getPrecoUnitario() + " | Valor Total (R$): " + m.getPrecoTotal() + "\n\n";
                     }
                     AreaTexto.appendText(linha);
                 }
             }
             else {
+                AreaTexto.setVisible(true);
                 AreaTexto.setText("Acesso negado. Você não tem permissão para acessar o relatório.");
             }
         });
         
 
         CardapiosButton.setOnAction(event -> {
+            inventarioTable.setVisible(false);
+            inventarioTable.getItems().clear();
+            AreaTexto.setVisible(true);
             if (user.getTipoCadastro() == TipoCadastro.ADMIN || user.getTipoCadastro() == TipoCadastro.CHEF){
                 CardapioView cardapioView = new CardapioView();
                 cardapioView.start(new Stage());
@@ -202,6 +228,9 @@ public class MenuView{
         });
 
         ReceitasButton.setOnAction(event -> {
+            inventarioTable.setVisible(false);
+            inventarioTable.getItems().clear();
+            AreaTexto.setVisible(true);
             if(user.getTipoCadastro() == TipoCadastro.ADMIN) {
                 AreaTexto.setText("--- RECEITAS CADASTRADAS ---\n\n");
                 ReceitaCtrl receitaCtrl = new ReceitaCtrl();
@@ -221,7 +250,7 @@ public class MenuView{
                     } else {
                         
 
-                        AreaTexto.appendText("  Ingredientes:\n");
+                        AreaTexto.appendText("     Ingredientes:\n");
                     }
                     for (Ingrediente i : ingredientes) {
                         String linhaIngrediente;
@@ -232,6 +261,7 @@ public class MenuView{
                         }
                         AreaTexto.appendText(linhaIngrediente);
                     }
+                    AreaTexto.appendText("\n");
                 }
             }
             else if (user.getTipoCadastro() == TipoCadastro.CHEF){
@@ -243,6 +273,9 @@ public class MenuView{
         });
 
         CadastrosButton.setOnAction(event -> {
+            inventarioTable.setVisible(false);
+            inventarioTable.getItems().clear();
+            AreaTexto.setVisible(true);
             if (user.getTipoCadastro() == TipoCadastro.ADMIN){
                 CadastrosView cadastrosView = new CadastrosView();
                 cadastrosView.start(new Stage());

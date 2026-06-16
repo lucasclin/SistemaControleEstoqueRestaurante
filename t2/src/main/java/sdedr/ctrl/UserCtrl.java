@@ -1,5 +1,7 @@
 package sdedr.ctrl;
 
+import java.util.ArrayList;
+
 import sdedr.model.User;
 import sdedr.model.Enum.TipoCadastro;
 import sdedr.dao.UserDao;
@@ -7,6 +9,7 @@ import sdedr.dao.UserDao;
 public class UserCtrl {
 
   private User usuarioAtual = new User();
+  private ArrayList<User> usuarios = new ArrayList<>();
 
   public UserCtrl() { }
 
@@ -22,6 +25,26 @@ public class UserCtrl {
     userNovo.setTipoCadastro(TipoCadastro.tipoCadastroInt(1));
     UserDao userDao = new UserDao();
     return userDao.inserir(userNovo);
+  }
+
+  public boolean prepararUsuarios() {
+    UserDao userDao = new UserDao();
+    this.usuarios.clear();
+    return userDao.retornarTudo(this.usuarios);
+  }
+
+  public ArrayList<User> getUsuarios() {
+    return this.usuarios;
+  }
+
+  public boolean cadastrarUsuario(User user) {
+    UserDao userDao = new UserDao();
+    return userDao.inserir(user);
+  }
+
+  public boolean removerUsuario(Long id) {
+    UserDao userDao = new UserDao();
+    return userDao.remover(id);
   }
 
   public boolean confirmarLogin(String nome, String senha) {

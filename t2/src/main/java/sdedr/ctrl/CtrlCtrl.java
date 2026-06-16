@@ -10,12 +10,18 @@ import sdedr.ctrl.*;
 
 public class CtrlCtrl {
   public final UserCtrl userCtrl;
-  public final MovimentacaoEstoqueDeProdutoCtrl movimentacaoEstoqueDeProdutoCtrl;
+  public final MovimentacaoCtrl movimentacaoCtrl;
   public final ProdutoCtrl produtoCtrl;
+  public final ReceitaCtrl receitaCtrl;
+  public final UnidadeCtrl unidadeCtrl;
+  public final IngredienteCtrl ingredienteCtrl;
 
   public CtrlCtrl() {
     this.userCtrl = new UserCtrl();
-    this.movimentacaoEstoqueDeProdutoCtrl = new MovimentacaoEstoqueDeProdutoCtrl();
+    this.movimentacaoCtrl = new MovimentacaoCtrl();
     this.produtoCtrl = new ProdutoCtrl();
+    this.receitaCtrl = new ReceitaCtrl();
+    this.unidadeCtrl = new UnidadeCtrl();
+    this.ingredienteCtrl = new IngredienteCtrl();
   }
 }

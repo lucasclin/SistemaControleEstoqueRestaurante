@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -71,16 +72,16 @@ public class ReceitasView extends Application {
         RemoverEstoqueButton.setPrefWidth(180.00);
         RemoverEstoqueButton.setPrefHeight(30.00);
         RemoverEstoqueButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 14.00));
-        RemoverEstoqueButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        RemoverEstoqueButton.setStyle(DefineView.estiloBotaoBase);
         RemoverEstoqueButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { RemoverEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         RemoverEstoqueButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { RemoverEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
 
         HBox barraAcoes = new HBox(RemoverEstoqueButton);
-        barraAcoes.setStyle("-fx-alignment: center-right;"); 
+        barraAcoes.setAlignment(Pos.CENTER_RIGHT);
 
         VBox layoutGeral = new VBox(15, receitasTable, barraAcoes);
         layoutGeral.setPadding(new Insets(40, 40, 40, 40)); 
-        layoutGeral.setStyle("-fx-background-color: #eeeeee;");
+        layoutGeral.setStyle(DefineView.estiloTela);
 
         Scene scene = new Scene(layoutGeral, 800, 480);
         primaryStage.setScene(scene);
@@ -95,14 +96,14 @@ public class ReceitasView extends Application {
             if (selecionada == null) {
                 aguardandoConfirmacao[0] = false;
                 RemoverEstoqueButton.setText("Remover do Estoque");
-                RemoverEstoqueButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                RemoverEstoqueButton.setStyle(DefineView.estiloBotaoBase);
                 return;
             }
 
             if (!aguardandoConfirmacao[0]) {
                 aguardandoConfirmacao[0] = true;
                 RemoverEstoqueButton.setText("Confirmar Remoção?");
-                RemoverEstoqueButton.setStyle("-fx-background-color: #ffe6e6; -fx-text-fill: #cc0000; -fx-border-color: #cc0000; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                RemoverEstoqueButton.setStyle(DefineView.estiloBotaoPerigo);
             
             } else {
                 ArrayList<Ingrediente> ingredientes = new ArrayList<>();
@@ -133,7 +134,7 @@ public class ReceitasView extends Application {
 
                 aguardandoConfirmacao[0] = false;
                 RemoverEstoqueButton.setText("Remover do Estoque");
-                RemoverEstoqueButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");}
+                RemoverEstoqueButton.setStyle(DefineView.estiloBotaoBase);}
         });
     }
 }

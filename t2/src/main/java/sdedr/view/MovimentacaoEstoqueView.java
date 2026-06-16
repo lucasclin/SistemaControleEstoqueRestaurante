@@ -36,10 +36,10 @@ public class MovimentacaoEstoqueView extends GridPane {
     this.setHgap(10);
     this.setVgap(10);
     this.setPadding(new Insets(20, 25, 25, 25));
-    this.setStyle("-fx-background-color: #b0c4de;");
+    this.setStyle(DefineView.estiloTela);
 
     Text tituloText = new Text("SDEDR");
-    tituloText.setStyle("-fx-font-size: 20px;");
+    tituloText.setStyle("-fx-font-size: 20px; " + DefineView.estiloTexto);
     this.add(tituloText, 0, 0, 2, 1);
 
     Label usuarioLabel = new Label("Usuário:");
@@ -77,8 +77,8 @@ public class MovimentacaoEstoqueView extends GridPane {
     TableView<MovimentacaoEstoqueDeProduto> movTableView = tabelaMovimentacaoEstoqueDeProduto();        
     Text subTituloText = new Text("Histórico:");
     this.add(subTituloText, 0, 2, 2, 1);
-    if (aux.movimentacaoEstoqueDeProdutoCtrl.prepararMovimentacoes(aux.userCtrl.retornarId())) {
-      movTableView.getItems().addAll(aux.movimentacaoEstoqueDeProdutoCtrl.getMovimentacaoEstoqueDeProdutos());
+    if (aux.movimentacaoCtrl.prepararMovimentacoes(aux.userCtrl.retornarId())) {
+      movTableView.getItems().addAll(aux.movimentacaoCtrl.getMovimentacaoEstoqueDeProdutos());
     }
     this.add(movTableView, 0, 3, 4, 1);
 
@@ -92,10 +92,10 @@ public class MovimentacaoEstoqueView extends GridPane {
       movTableView.getItems().clear();
       
       // 2. Manda o controller buscar os dados atualizados do banco
-      if (aux.movimentacaoEstoqueDeProdutoCtrl.prepararMovimentacoes(aux.userCtrl.retornarId())) {
+      if (aux.movimentacaoCtrl.prepararMovimentacoes(aux.userCtrl.retornarId())) {
         // 3. Adiciona a nova lista atualizada na tabela
         movTableView.getItems().clear();
-        movTableView.getItems().addAll(aux.movimentacaoEstoqueDeProdutoCtrl.getMovimentacaoEstoqueDeProdutos());
+        movTableView.getItems().addAll(aux.movimentacaoCtrl.getMovimentacaoEstoqueDeProdutos());
       }
     });
   }
@@ -228,9 +228,9 @@ public class MovimentacaoEstoqueView extends GridPane {
               return;
             } else {
               if(aux.userCtrl.confirmarLogin(aux.userCtrl.retornarNomeOuCadastro(true), senha)) {
-                if(!aux.movimentacaoEstoqueDeProdutoCtrl.movimentarEstoque(entradaTmp)) {
-                  Alert alert = new Alert(Alert.AlertType.ERROR, "Erro db.");
-                  alert.showAndWait();
+                  if(!aux.movimentacaoCtrl.movimentarEstoque(entradaTmp)) {
+                  Alert alert2 = new Alert(null);
+                  alert2.showAndWait();
                 }
 
                 terceiraStage.close();

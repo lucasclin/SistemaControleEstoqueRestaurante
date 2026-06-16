@@ -274,13 +274,20 @@ public class ProdutoDao {
   }
 
   public boolean atualizarQuantidade(Produto produto, BigDecimal quantidade_a_mudar, TipoMovimentacao movimentacao){
+    // Fetch fresh data from database to ensure current quantity is accurate
     Produto tmpProduto = new Produto();
     ProdutoDao produtoDao = new ProdutoDao();
     produtoDao.retornar((produto.getId()), tmpProduto);
 
-    if ((quantidade_a_mudar.compareTo(produto.getQuantidadeEstoque()) <= 0 && (movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA))
-       || quantidade_a_mudar.compareTo(produto.getQuantidadeEstoque()) >= 0 && (movimentacao == TipoMovimentacao.AJUSTE || movimentacao == TipoMovimentacao.ENTRADA)){
+    // Validation logic based on movement type:
+    // - SAIDA/PERDA: can only remove up to current quantity
+    // - ENTRADA: must be positive
+    // - AJUSTE: allows both positive (increase) and negative (decrease)
+    boolean isValid = (quantidade_a_mudar.compareTo(tmpProduto.getQuantidadeEstoque()) <= 0 && (movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA))
+       || (quantidade_a_mudar.compareTo(BigDecimal.ZERO) >= 0 && movimentacao == TipoMovimentacao.ENTRADA)
+       || movimentacao == TipoMovimentacao.AJUSTE;
 
+    if(isValid){
       String sql = "UPDATE produto SET quantidadeEstoque = ? "
                 + "WHERE id = ?";
       Connection con = null;
@@ -295,11 +302,12 @@ public class ProdutoDao {
         con.setAutoCommit(false);
         cmd = con.prepareStatement(sql);
         if(movimentacao == TipoMovimentacao.SAIDA || movimentacao == TipoMovimentacao.PERDA){
-          cmd.setBigDecimal(1, (produto.getQuantidadeEstoque().subtract(quantidade_a_mudar)));
+          cmd.setBigDecimal(1, (tmpProduto.getQuantidadeEstoque().subtract(quantidade_a_mudar)));
         } else{
-          cmd.setBigDecimal(1, (produto.getQuantidadeEstoque().add(quantidade_a_mudar)));
+          // ENTRADA and AJUSTE: add the value (AJUSTE with negative will reduce)
+          cmd.setBigDecimal(1, (tmpProduto.getQuantidadeEstoque().add(quantidade_a_mudar)));
         }
-        cmd.setLong(2, produto.getId());
+        cmd.setLong(2, tmpProduto.getId());
 
         cmd.executeUpdate();
         con.commit();

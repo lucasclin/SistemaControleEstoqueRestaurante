@@ -1,9 +1,11 @@
 package sdedr.ctrl;
 
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 import sdedr.model.Produto;
 import sdedr.model.Receita;
+import sdedr.model.Enum.TipoMovimentacao;
 import sdedr.dao.ProdutoDao;
 import sdedr.dao.ReceitaDao;
 
@@ -39,5 +41,20 @@ public class ProdutoCtrl {
 
   public ArrayList<Produto> getProdutos() {
     return this.produtos;
+  }
+
+  public boolean cadastrarProduto(Produto produto) {
+    ProdutoDao produtoDao = new ProdutoDao();
+    return produtoDao.inserir(produto);
+  }
+
+  public boolean removerProduto(Long id) {
+    ProdutoDao produtoDao = new ProdutoDao();
+    return produtoDao.remover(id);
+  }
+
+  public boolean atualizarQuantidade(Produto produto, BigDecimal quantidade, TipoMovimentacao tipo) {
+    ProdutoDao produtoDao = new ProdutoDao();
+    return produtoDao.atualizarQuantidade(produto, quantidade, tipo);
   }
 }

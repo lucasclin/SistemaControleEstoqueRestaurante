@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -40,7 +41,7 @@ public class CadastrosView extends Application {
 
         Pane painelEsquerdo = new Pane();
         painelEsquerdo.setPrefSize(250, 450);
-        painelEsquerdo.setStyle("-fx-background-color: #eeeeee;");
+        painelEsquerdo.setStyle(DefineView.estiloTela);
 
         Button UsuariosButton = new Button("Cadastrar Usuários");
         UsuariosButton.setLayoutX(40.00);
@@ -48,7 +49,7 @@ public class CadastrosView extends Application {
         UsuariosButton.setPrefWidth(164.00);
         UsuariosButton.setPrefHeight(47.00);
         UsuariosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        UsuariosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        UsuariosButton.setStyle(DefineView.estiloBotaoBase);
         UsuariosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { UsuariosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         UsuariosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { UsuariosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         painelEsquerdo.getChildren().add(UsuariosButton);
@@ -59,7 +60,7 @@ public class CadastrosView extends Application {
         ProdutosButton.setPrefWidth(164.00);
         ProdutosButton.setPrefHeight(47.00);
         ProdutosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        ProdutosButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        ProdutosButton.setStyle(DefineView.estiloBotaoBase);
         ProdutosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ProdutosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ProdutosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ProdutosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         painelEsquerdo.getChildren().add(ProdutosButton);
@@ -70,7 +71,7 @@ public class CadastrosView extends Application {
         UnidadesButton.setPrefWidth(164.00);
         UnidadesButton.setPrefHeight(47.00);
         UnidadesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        UnidadesButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        UnidadesButton.setStyle(DefineView.estiloBotaoBase);
         UnidadesButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { UnidadesButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         UnidadesButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { UnidadesButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         painelEsquerdo.getChildren().add(UnidadesButton);
@@ -81,7 +82,7 @@ public class CadastrosView extends Application {
         ReceitasButton.setPrefWidth(164.00);
         ReceitasButton.setPrefHeight(47.00);
         ReceitasButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        ReceitasButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        ReceitasButton.setStyle(DefineView.estiloBotaoBase);
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         ReceitasButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { ReceitasButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         painelEsquerdo.getChildren().add(ReceitasButton);
@@ -92,7 +93,7 @@ public class CadastrosView extends Application {
         IngredientesButton.setPrefWidth(164.00);
         IngredientesButton.setPrefHeight(47.00);
         IngredientesButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        IngredientesButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        IngredientesButton.setStyle(DefineView.estiloBotaoBase);
         IngredientesButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { IngredientesButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         IngredientesButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { IngredientesButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         painelEsquerdo.getChildren().add(IngredientesButton);
@@ -116,11 +117,9 @@ public class CadastrosView extends Application {
             id_usuario.setCellValueFactory(new PropertyValueFactory<>("id"));
             TableColumn<User, String> nome_usuario = new TableColumn<>("nome");
             nome_usuario.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            TableColumn<User, String> senha_usuario = new TableColumn<>("senha");
-            senha_usuario.setCellValueFactory(new PropertyValueFactory<>("senha"));
             TableColumn<User, String> tipoCadastro_usuario = new TableColumn<>("permissão");
             tipoCadastro_usuario.setCellValueFactory(new PropertyValueFactory<>("tipoCadastro"));
-            userTable.getColumns().setAll(id_usuario, nome_usuario, senha_usuario, tipoCadastro_usuario);
+            userTable.getColumns().setAll(id_usuario, nome_usuario, tipoCadastro_usuario);
             userTable.setEditable(false);
             userTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
@@ -165,7 +164,7 @@ public class CadastrosView extends Application {
         CadastrarButton.setPrefWidth(105.81);
         CadastrarButton.setPrefHeight(30.00);
         CadastrarButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        CadastrarButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        CadastrarButton.setStyle(DefineView.estiloBotaoBase);
         CadastrarButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrarButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CadastrarButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrarButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
 
@@ -173,19 +172,19 @@ public class CadastrosView extends Application {
         RemoverButton.setPrefWidth(105.81);
         RemoverButton.setPrefHeight(30.00);
         RemoverButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        RemoverButton.setStyle(DefineView.estiloBotaoBase);
         RemoverButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { RemoverButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         RemoverButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { RemoverButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
 
         HBox barraAcoes = new HBox(10, RemoverButton, CadastrarButton);
-        barraAcoes.setStyle("-fx-alignment: center-right;"); 
+        barraAcoes.setAlignment(Pos.CENTER_RIGHT);
 
         VBox painelDireitoConteudo = new VBox(15, containerTabelas, barraAcoes);
         painelDireitoConteudo.setPadding(new Insets(53, 40, 40, 10)); 
         HBox.setHgrow(painelDireitoConteudo, Priority.ALWAYS);
 
         HBox layoutGeral = new HBox(painelEsquerdo, painelDireitoConteudo);
-        layoutGeral.setStyle("-fx-background-color: #eeeeee;");
+        layoutGeral.setStyle(DefineView.estiloTela);
 
         userTable.setVisible(false);
         unidadesTable.setVisible(false);
@@ -205,7 +204,7 @@ public class CadastrosView extends Application {
             receitasTable.setVisible(false);
             aguardandoConfirmacao[0] = false;
             RemoverButton.setText("Remover");
-            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            RemoverButton.setStyle(DefineView.estiloBotaoBase);
 
 
 
@@ -226,7 +225,7 @@ public class CadastrosView extends Application {
             receitasTable.setVisible(false);
             aguardandoConfirmacao[0] = false;
             RemoverButton.setText("Remover");
-            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            RemoverButton.setStyle(DefineView.estiloBotaoBase);
 
 
             UnidadeDao unidadeDao = new UnidadeDao();
@@ -245,7 +244,7 @@ public class CadastrosView extends Application {
             receitasTable.setVisible(false);
             aguardandoConfirmacao[0] = false;
             RemoverButton.setText("Remover");
-            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            RemoverButton.setStyle(DefineView.estiloBotaoBase);
 
 
             ProdutoDao produtoDao = new ProdutoDao();
@@ -264,7 +263,7 @@ public class CadastrosView extends Application {
             receitasTable.setVisible(true);
             aguardandoConfirmacao[0] = false;
             RemoverButton.setText("Remover");
-            RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+            RemoverButton.setStyle(DefineView.estiloBotaoBase);
 
             ReceitaDao userdao = new ReceitaDao();
             ArrayList<Receita> lista = new ArrayList<>();
@@ -297,14 +296,14 @@ public class CadastrosView extends Application {
             if (itemSelecionado == null) {
                 aguardandoConfirmacao[0] = false;
                 RemoverButton.setText("Remover");
-                RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                RemoverButton.setStyle(DefineView.estiloBotaoBase);
                 return;
             }
 
             if (!aguardandoConfirmacao[0]) {
                 aguardandoConfirmacao[0] = true;
                 RemoverButton.setText("Confirmar?");
-                RemoverButton.setStyle("-fx-background-color: #ffe6e6; -fx-text-fill: #cc0000; -fx-border-color: #cc0000; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                RemoverButton.setStyle(DefineView.estiloBotaoPerigo);
             
             } else {
 
@@ -340,7 +339,7 @@ public class CadastrosView extends Application {
 
                 aguardandoConfirmacao[0] = false;
                 RemoverButton.setText("Remover");
-                RemoverButton.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+                RemoverButton.setStyle(DefineView.estiloBotaoBase);
             }
         });
 

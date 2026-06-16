@@ -33,20 +33,20 @@ public class CardapioView {
 
         Pane pane = new Pane();
         pane.setPrefSize(903, 452);
-        pane.setStyle("-fx-background-color: #eeeeee;");
+        pane.setStyle(DefineView.estiloTela);
 
         Label titulo = new Label("Cardápio do dia");
         titulo.setLayoutX(55.00);
         titulo.setLayoutY(16.00);
         titulo.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 18.00));
-        titulo.setStyle("-fx-text-fill: #1b1b1b;");
+        titulo.setStyle(DefineView.estiloTexto);
         pane.getChildren().add(titulo);
 
         Label labelDia = new Label("Dia:");
         labelDia.setLayoutX(55.00);
         labelDia.setLayoutY(58.00);
         labelDia.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        labelDia.setStyle("-fx-text-fill: #1b1b1b;");
+        labelDia.setStyle(DefineView.estiloTexto);
         pane.getChildren().add(labelDia);
 
         ComboBox<Cardapio> comboDia = new ComboBox<>();
@@ -56,7 +56,7 @@ public class CardapioView {
         comboDia.setLayoutX(100.00);
         comboDia.setLayoutY(54.00);
         comboDia.setPrefWidth(180.00);
-        comboDia.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-width: 1px;");
+        comboDia.setStyle(DefineView.estiloBotaoBase);
         pane.getChildren().add(comboDia);
 
         TextArea areaTexto = new TextArea("");
@@ -66,7 +66,7 @@ public class CardapioView {
         areaTexto.setPrefWidth(793.00);
         areaTexto.setPrefHeight(312.00);
         areaTexto.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        areaTexto.setStyle("-fx-control-inner-background: #ffffff; -fx-background-color: #ffffff; -fx-text-fill: #1b1b1b; -fx-border-color: #626262; -fx-border-width: 1px; -fx-border-radius: 2px;");
+        areaTexto.setStyle(DefineView.estiloEntrada);
         pane.getChildren().add(areaTexto);
 
         Scene scene = new Scene(pane, 903, 452);
