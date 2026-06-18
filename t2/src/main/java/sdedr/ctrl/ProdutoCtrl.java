@@ -35,6 +35,7 @@ public class ProdutoCtrl {
   private ArrayList<Produto> produtos = new ArrayList<>();
 
   public boolean prepararProdutos() {
+    this.produtos.clear();
     ProdutoDao produtoDao = new ProdutoDao();
     return produtoDao.retornarTudo(produtos);
   }

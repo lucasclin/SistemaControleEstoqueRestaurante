@@ -132,12 +132,15 @@ public class MovimentacaoEstoqueView extends GridPane {
     ComboBox<TipoMovimentacao> tipoComboBox = new ComboBox<>();
     tipoComboBox.setPromptText("Tipo de Movimentação");
     tipoComboBox.setMaxWidth(Double.MAX_VALUE);
-    tipoComboBox.getItems().addAll(TipoMovimentacao.values());
+    tipoComboBox.getItems().add(TipoMovimentacao.ENTRADA);
+    tipoComboBox.getItems().add(TipoMovimentacao.SAIDA);
+    tipoComboBox.getItems().add(TipoMovimentacao.AJUSTE);
+    tipoComboBox.getItems().add(TipoMovimentacao.PERDA);
 
     if(aux.produtoCtrl.prepararProdutos()) {
-      produtoComboBox.getItems().addAll(aux.produtoCtrl.getProdutos());
+        produtoComboBox.getItems().setAll(aux.produtoCtrl.getProdutos());
     }
-
+  
     TextField quantField = new TextField();
     quantField.setPromptText("Quantidade");    
 

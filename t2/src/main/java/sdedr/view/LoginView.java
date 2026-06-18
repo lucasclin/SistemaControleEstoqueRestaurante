@@ -92,7 +92,7 @@ public class LoginView extends GridPane {
 
             MenuView menu = new MenuView(usuario, user);
           
-            menu.start(stageMenu);
+            menu.start(stageMenu, loop);
 
             Stage janelaLogin = (Stage) logarButton.getScene().getWindow();
             janelaLogin.close(); 

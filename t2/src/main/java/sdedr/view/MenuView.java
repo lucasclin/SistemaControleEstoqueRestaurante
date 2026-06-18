@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import sdedr.App;
 import sdedr.ctrl.IngredienteCtrl;
 import sdedr.ctrl.MovimentacaoCtrl;
 import sdedr.ctrl.ProdutoCtrl;
@@ -24,31 +25,51 @@ import javafx.scene.text.Font;
 
 public class MenuView{
     private String nomeUsuario;
-    private User user;
+    private User user;            
+    private Stage principalStage = new Stage(); 
 
     public MenuView(String nomeUsuario, User user) {
         this.nomeUsuario = nomeUsuario;
         this.user = user;
     }
 
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage, App Loop) {
         primaryStage.setTitle("Sistema de Controle de Estoque Restaurante");
 
         Pane pane = new Pane();
         pane.setPrefSize(903, 452);
         pane.setStyle(DefineView.estiloTela);
 
-        Button MovimentarEstoqueButton = new Button("Movimentar Estoque");
-        MovimentarEstoqueButton.setLayoutX(55.00);
-        MovimentarEstoqueButton.setLayoutY(53.00);
-        MovimentarEstoqueButton.setPrefWidth(164.00);
-        MovimentarEstoqueButton.setPrefHeight(47.00);
-        MovimentarEstoqueButton.setDisable(false);
-        MovimentarEstoqueButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        MovimentarEstoqueButton.setStyle(DefineView.estiloBotaoBase);
-        MovimentarEstoqueButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { MovimentarEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
-        MovimentarEstoqueButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { MovimentarEstoqueButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
-        pane.getChildren().add(MovimentarEstoqueButton);
+        Button sairButton = new Button("Sair");
+        sairButton.setLayoutX(55.00);
+        sairButton.setLayoutY( 335.00);
+        sairButton.setStyle(DefineView.estiloBotao);
+        sairButton.setOnMousePressed(e -> sairButton.setStyle(DefineView.estiloBotaoAtivo));
+        sairButton.setOnMouseReleased(e -> sairButton.setStyle(DefineView.estiloBotao));
+        pane.getChildren().add(sairButton);
+
+        sairButton.setOnAction(event -> {
+            LoginView loginView = new LoginView(Loop);
+            Scene loginTela = new Scene(loginView, 500, 450);
+
+            principalStage.setScene(loginTela);
+            principalStage.show();
+
+            Stage menuJanela = (Stage) sairButton.getScene().getWindow();
+            menuJanela.close();
+        });
+
+        Button CadastrosButton = new Button("Cadastros");
+        CadastrosButton.setLayoutX(55.00);
+        CadastrosButton.setLayoutY(53.00);
+        CadastrosButton.setPrefWidth(164.00);
+        CadastrosButton.setPrefHeight(47.00);
+        CadastrosButton.setDisable(false);
+        CadastrosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
+        CadastrosButton.setStyle(DefineView.estiloBotaoBase);
+        CadastrosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
+        CadastrosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
+        pane.getChildren().add(CadastrosButton);
 
         Button ReceitasButton = new Button("Mostrar Receitas");
         ReceitasButton.setLayoutX(55.00);
@@ -97,18 +118,6 @@ public class MenuView{
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
         CardapiosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CardapiosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
         pane.getChildren().add(CardapiosButton);
-
-        Button CadastrosButton = new Button("Cadastros");
-        CadastrosButton.setLayoutX(55.00);
-        CadastrosButton.setLayoutY(338.00);
-        CadastrosButton.setPrefWidth(164.00);
-        CadastrosButton.setPrefHeight(47.00);
-        CadastrosButton.setDisable(false);
-        CadastrosButton.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/BlexMonoNerdFont-Regular.ttf"), 13.00));
-        CadastrosButton.setStyle(DefineView.estiloBotaoBase);
-        CadastrosButton.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#c2c2c2"), new CornerRadii(4.00), null))); });
-        CadastrosButton.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> { CadastrosButton.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(4.00), null))); });
-        pane.getChildren().add(CadastrosButton);
 
         TableView<Produto> inventarioTable = new TableView<>();
         inventarioTable.setLayoutX(257.00);
@@ -285,6 +294,11 @@ public class MenuView{
             }
         });
         
+    }
+
+    private void add(HBox grupoHBox, int i, int j) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'add'");
     }
 }
 
